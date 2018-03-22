@@ -1,15 +1,15 @@
 require("dotenv").config()
 
-const 	express = require("express"),
- 		mongoose = require("mongoose"),
- 		bodyParser = require('body-parser'),
-		// keys = require("./config/keys"),
-		cors = require('cors'),
-		authRoutes = require('./routes/auth'),
-		postsRoutes = require('./routes/posts'),
-		auth = require('./middleware/auth'),
-		db = require('./models'),
-		app = express();
+const express = require("express"),
+ 		  mongoose = require("mongoose"),
+ 		  bodyParser = require('body-parser'),
+		  cors = require('cors'),
+		  authRoutes = require('./routes/auth'),
+		  postsRoutes = require('./routes/posts'),
+      errorHandler = require('./helpers/error'),
+		  {loginRequired, ensureCorrectUser} = require('./middleware/auth'),
+		  db = require('./models'),
+		  app = express();
 
 //require models
 // require("./models/testModel");
@@ -17,7 +17,7 @@ const 	express = require("express"),
 // Middlewares
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
+// app.use(bodyParser.urlencoded({extended:true}));
 
 
 //import and call routes
@@ -25,28 +25,39 @@ app.use(bodyParser.urlencoded({extended:true}));
 // require("./routes/users")(app);
 // app.use('/users', require('./routes/users'));
 
-app.get('/', function(req, res){
-	res.json({message: "make a POST request to /api/auth/singup to signup"});
-});
-
-app.use('/api/users/:id/posts',
-        auth.loginRequired, auth.ensureCorrectUser,
-        postsRoutes);
-
+// app.get('/', function(req, res){
+// 	res.json({message: "make a POST request to /api/auth/singup to signup"});
+// });
 
 app.use('/api/auth', authRoutes);
 
-app.get('/api/posts', function(req, res, next) {
-  db.Post.find().sort({createAt: 'desc'})
-    .populate("userId", {username: true, profileImageUrl: true})
-    .then(function(posts) {
-      res.json(posts);
-    }).catch(function(err) {
-      res.status(500).json(err);
-    })
+app.use('/api/users/:id/posts', 
+        loginRequired, 
+        ensureCorrectUser,
+        postsRoutes);
+
+app.get('/api/posts', loginRequired, async function(req, res, next){
+  try{
+    let posts = await db.Post.find()
+      // .sort({ createdAt: "desc "})
+      .populate("user", {
+        username: true,
+        profileImageUrl: true
+      });
+      return res.status(200).json(posts);
+  } catch(err){
+    return next(err);
+  }
 });
 
 
+app.use(function(req, ers, next){
+  let err = new Error("Not Found");
+  err.status = 404;
+  next(err);
+})
+
+app.use(errorHandler);
 
 // Connect to server
 

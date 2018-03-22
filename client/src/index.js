@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import ArtViewer from './containers/ArtViewer';
+import App from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
-  <ArtViewer />,
+  <App />,
   document.getElementById('root')
 );
 registerServiceWorker();

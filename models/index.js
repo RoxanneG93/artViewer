@@ -3,7 +3,7 @@ const 	mongoose = require("mongoose"),
 
 
 mongoose.set('debug', true);
-mongoose.Promise = global.Promise;
+mongoose.Promise = Promise;
 
 //connect to db
 mongoose.connect(keys.MONGO_URI, () => console.log("DB Connected"));

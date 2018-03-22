@@ -1,35 +1,33 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
-import * as actions from '../actions';
-import Main from './Main';
-import Navbar from '../components/Nav/Navbar';
+import React, { Component } from "react";
+import { Provider } from "react-redux";
+import { configureStore } from "../store";
+import { BrowserRouter as Router } from "react-router-dom";
+import Navbar from "./Navbar";
+import Main from "./Main";
+import { setAuthorizationToken, setCurrentUser } from "../store/actions/auth";
+import jwtDecode from "jwt-decode";
 
-const App = ({
-  currentUser,
-  authErrorMessage,
-  onLogout
-}) => (
-  <div>
-    <Navbar
-      currentUser={currentUser}
-      profileImageUrl={
-        currentUser && currentUser.profileImageUrl ?
-          currentUser.profileImageUrl : null
-      }
-      onLogout={onLogout}
-    />
-    <Main />
-  </div>
+const store = configureStore();
+
+if (localStorage.jwtToken) {
+  setAuthorizationToken(localStorage.jwtToken);
+  // prevent someone from manually tampering with the key of jwtToken in localStorage
+  try {
+    store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
+  } catch (e) {
+    store.dispatch(setCurrentUser({}));
+  }
+}
+
+const App = () => (
+  <Provider store={store}>
+    <Router>
+      <div className="onboarding">
+        <Navbar />
+        <Main />
+      </div>
+    </Router>
+  </Provider>
 );
 
-
-const mapStateToProps = state => ({
-  currentUser: state.currentUser
-});
-
-const mapDispatchToProps = dispatch => ({
-  onLogout() { dispatch(actions.userLogout()) },
-});
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default App;

@@ -12,7 +12,7 @@ const postSchema = new mongoose.Schema({
     required: true,
     maxLength: 160
   },
-  userId: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true
@@ -21,15 +21,20 @@ const postSchema = new mongoose.Schema({
   timestamps: true
 });
 
-postSchema.pre('remove', function(next){
-  User.findById(this.userId).then(user => {
-    user.posts.remove(this.id);
-    user.save().then(function(e){
-      next();
-    });
-  }).catch(function(err) {
-    next(err);
-  });
+postSchema.pre('remove', async function(next){
+  // find a user
+  try {
+    let user = await User.findById(this.userId);
+    // remove the id of the message fro thier message list
+    user.post.remove(this.id);
+    // save the user and return next
+    await user.save()
+    // return next
+    return next();
+
+  } catch(error){
+    return next(error);
+  }
 });
 
 const Post = mongoose.model('Post', postSchema);

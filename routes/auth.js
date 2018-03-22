@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const db = require("../models");
 const jwt = require('jsonwebtoken');
-const helpers = require('../helpers/auth');
+const {signup, signin } = require('../helpers/auth');
 
-router.post('/signin', helpers.signin);
-router.post('/signup', helpers.signup);
+router.post('/signin', signin);
+router.post('/signup', signup);
 
 module.exports = router;

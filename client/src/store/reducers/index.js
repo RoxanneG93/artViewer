@@ -1,12 +1,13 @@
 import {combineReducers} from 'redux';
-import currentUser, {getCurrentUser} from './currentUser';
+import currentUser from './currentUser';
+import errors from './errors';
 import posts from './posts';
 
-export {getCurrentUser};
 
 const rootReducer = combineReducers({
   currentUser,
-  posts,
+  errors,
+  posts
 });
 
 export default rootReducer;

@@ -1,9 +1,15 @@
 const express = require("express");
 const router = express.Router({mergeParams: true});
 const db = require("../models");
-const helpers = require('../helpers/posts');
+const { createPost, getPost, deletePost } = require('../helpers/posts');
 
-router.post('/', helpers.createPost);
+// prefix - /api/users/:id/posts
+router.route("/").post(createPost);
 
+// prefix - /api/users/:id/posts/:post_id
+router
+	.route("/:post_id")
+	.get(getPost)
+	.delete(deletePost);
 
 module.exports = router;
