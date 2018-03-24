@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router({mergeParams: true});
-const db = require("../models");
 const { createPost, getPost, deletePost } = require('../helpers/posts');
 
 // prefix - /api/users/:id/posts

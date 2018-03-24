@@ -30,7 +30,7 @@ const PostItem = ({
           <a>{username}</a>
         </span>
         <div>
-          <img src={galleryPost} alt={username}/>
+          <img src={galleryPost} alt=""/>
         </div>
         <p>{text}</p>
         {isCorrectUser && (

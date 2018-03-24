@@ -7,9 +7,11 @@ export function configureStore() {
     rootReducer,
     compose(
       applyMiddleware(thunk),
+      // Below is code used to debug using redux dev tools
       window.devToolsExtension ? window.devToolsExtension() : f => f
     )
   );
 
   return store;
 }
+

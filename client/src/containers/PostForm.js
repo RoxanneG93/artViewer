@@ -13,7 +13,7 @@ class PostForm extends Component {
   handleNewPost = event => {
     event.preventDefault();
     this.props.postNewPost(this.state.post);
-    this.setState({ post: "" });
+    this.setState({ post: ""  });
     this.props.history.push("/");
   };
 

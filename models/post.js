@@ -5,28 +5,30 @@ const User = require("./user");
 const postSchema = new mongoose.Schema({
   galleryPost: {
     type: String,
-    required: true
+    // required: true
   },
   text: {
     type: String,
-    required: true,
+    // required: true,
     maxLength: 160
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true
-  }
-}, {
+    ref: "User"
+
+  },
+},
+  {
   timestamps: true
-});
+  }
+);
 
 postSchema.pre('remove', async function(next){
   // find a user
   try {
-    let user = await User.findById(this.userId);
+    let user = await User.findById(this.user);
     // remove the id of the message fro thier message list
-    user.post.remove(this.id);
+    user.posts.remove(this.id);
     // save the user and return next
     await user.save()
     // return next

@@ -13,11 +13,11 @@ class PostList extends Component {
       <PostItem
         key={p._id}
         text={p.text}
-        galleryPost={p.galleryPost}
-        username={p.username}
-        profileImageUrl={p.profileImageUrl}
-        // removePost={removePost.bind(this, p.user._id, p._id)}
-        isCorrectUser={currentUser === p._id}
+        galleryPost={p.user.galleryPost}
+        username={p.user.username}
+        profileImageUrl={p.user.profileImageUrl}
+        removePost={removePost.bind(this, p.user._id, p._id)}
+        isCorrectUser={currentUser === p.user._id}
       />
     ));
     return (
