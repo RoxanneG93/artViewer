@@ -12,8 +12,9 @@ class PostList extends Component {
     let postList = posts.map(p => (
       <PostItem
         key={p._id}
+        title={p.title}
         text={p.text}
-        galleryPost={p.user.galleryPost}
+        galleryPost={p.galleryPost}
         username={p.user.username}
         profileImageUrl={p.user.profileImageUrl}
         removePost={removePost.bind(this, p.user._id, p._id)}
@@ -21,11 +22,11 @@ class PostList extends Component {
       />
     ));
     return (
-      <div className="row col-sm-8">
-        <div className="offset-1 col-sm-10">
-          <ul className="list-group" id="posts">
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-3">
             {postList}
-          </ul>
+          </div>
         </div>
       </div>
     );

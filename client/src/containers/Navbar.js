@@ -11,13 +11,12 @@ class Navbar extends Component {
   };
   render() {
     return (
-      <nav className="navbar navbar-expand">
+      <nav className="navbar navbar-expand-lg navbar navbar-light">
         <div className="container-fluid">
-          <div className="navbar-header">
-            <Link to="/" className="navbar-brand">
-              <img src={Logo} alt="Art Home" />
-            </Link>
-          </div>
+          <Link to="/" className="navbar-brand">
+            <img src={Logo} alt="Art Home" />
+            <span>Art-Viewer</span>
+          </Link>
           {this.props.currentUser.isAuthenticated ? (
             <ul className="nav navbar-nav navbar-right">
               <li>

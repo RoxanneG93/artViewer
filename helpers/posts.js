@@ -4,7 +4,8 @@ exports.createPost = async function(req,res,next){
 
   try {
     let post = await db.Post.create({
-      galleryPost: req.body.text,
+      title: req.body.title,
+      galleryPost: req.body.galleryPost,
       text: req.body.text,
       user: req.params.id
     });

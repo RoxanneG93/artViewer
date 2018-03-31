@@ -3,13 +3,17 @@ const User = require("./user");
 
 
 const postSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true
+  },
   galleryPost: {
     type: String,
-    // required: true
+    required: true
   },
   text: {
     type: String,
-    // required: true,
+    required: true,
     maxLength: 160
   },
   user: {

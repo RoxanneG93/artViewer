@@ -2,10 +2,11 @@ body {
   background-color: #e6ecf0;
 }
 
-/* Nav */
+/* Nav STYLING */
 
 .navbar {
   margin-bottom: 1rem;
+  background-color: #1e9fbf;
 }
 
 .navbar a {
@@ -35,7 +36,7 @@ ul.nav.navbar-nav li {
   background-size: 100% 100%;
 }
 
-.home-hero {
+/*.home-hero {
   width: 100vw;
   height: 100vh;
   position: absolute;
@@ -53,9 +54,9 @@ ul.nav.navbar-nav li {
   color: #fff;
   text-shadow: 0 0 8px #66757f;
 }
-
-#messages .list-group-item {
-  display: flex;
+*/
+/*#messages .list-group-item {
+  display: inline-block;
   align-items: flex-start;
   padding: 7px 20px 12px;
 }
@@ -63,7 +64,7 @@ ul.nav.navbar-nav li {
 #messages:not(.no-hover) .list-group-item:hover {
   background-color: #e6ecf0;
 }
-
+*/
 .timeline-image {
   border-radius: 50px;
   height: 48px;
@@ -82,4 +83,20 @@ a.btn.btn-danger:hover {
 
 .navbar-header {
   margin: 0 auto;
+}
+
+/*USER Profile*/
+.user-profile {
+  float: left;
+  margin-right: 100px;
+}
+
+
+/*POST STYLING*/
+.row {
+  display: inline-block;
+}
+.card {
+  width: 18rem;
+  display: inline-block;
 }
