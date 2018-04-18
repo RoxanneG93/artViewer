@@ -1,66 +1,38 @@
-require("dotenv").config()
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const passport = require('passport');
 
-const express = require("express"),
- 		  mongoose = require("mongoose"),
- 		  bodyParser = require('body-parser'),
-		  cors = require('cors'),
-		  authRoutes = require('./routes/auth'),
-		  postsRoutes = require('./routes/posts'),
-      errorHandler = require('./helpers/error'),
-		  {loginRequired, ensureCorrectUser} = require('./middleware/auth'),
-		  db = require('./models'),
-		  app = express();
+const users = require('./routes/api/users');
+const profile = require('./routes/api/profile');
+const posts = require('./routes/api/posts');
 
-//require models
-// require("./models/testModel");
+const app = express();
 
-// Middlewares
-app.use(cors());
+// Body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
 
+// DB Config
+const db = require('./config/keys').mongoURI;
 
-//import and call routes
-// require("./routes/testRoutes")(app);
-// require("./routes/users")(app);
-// app.use('/users', require('./routes/users'));
+// Connect to MongoDB
+mongoose
+  .connect(db)
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err));
 
-// app.get('/', function(req, res){
-// 	res.json({message: "make a POST request to /api/auth/singup to signup"});
-// });
+// Passport middleware
+app.use(passport.initialize());
 
-app.use('/api/auth', authRoutes);
+// Passport Config
+require('./config/passport')(passport);
 
-app.use('/api/users/:id/posts', 
-        loginRequired, 
-        ensureCorrectUser,
-        postsRoutes);
+// Use Routes
+app.use('/api/users', users);
+app.use('/api/profile', profile);
+app.use('/api/posts', posts);
 
-app.get('/api/posts', loginRequired, async function(req, res, next){
-  try{
-    let posts = await db.Post.find()
-      // .sort({ createdAt: "desc "})
-      .populate("user", {
-        username: true,
-        profileImageUrl: true
-      });
-      return res.status(200).json(posts);
-  } catch(err){
-    return next(err);
-  }
-});
+const port = process.env.PORT || 5000;
 
-
-app.use(function(req, ers, next){
-  let err = new Error("Not Found");
-  err.status = 404;
-  next(err);
-})
-
-app.use(errorHandler);
-
-// Connect to server
-
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => console.log(`Server Live on ${PORT}`));
+app.listen(port, () => console.log(`Server running on port ${port}`));
