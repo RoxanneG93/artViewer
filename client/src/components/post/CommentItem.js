@@ -10,6 +10,7 @@ class CommentItem extends Component {
 
   render() {
     const { comment, postId, auth } = this.props;
+    console.log(this.props);
 
     return (
       <div className="card card-body mb-3">
@@ -23,9 +24,9 @@ class CommentItem extends Component {
               />
             </a>
             <br />
-            <p className="text-center">{comment.name}</p>
           </div>
           <div className="col-md-10">
+            <p>{comment.name}</p>
             <p className="lead">{comment.text}</p>
             {comment.user === auth.user.id ? (
               <button

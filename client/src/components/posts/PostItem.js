@@ -42,9 +42,9 @@ class PostItem extends Component {
               />
             </a>
             <br />
-            <p className="text-center">{post.title}</p>
           </div>
           <div className="col-md-10">
+          <p className="text-center">{post.title}</p>
           <img src={post.image} alt="" />
             <p className="lead">{post.text}</p>
             {showActions ? (

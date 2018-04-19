@@ -56,14 +56,16 @@ class PostForm extends Component {
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
                 <TextAreaFieldGroup
-                  type="text" 
+                  type="text"
+                  name="title"
                   placeholder="title"
                   value={this.state.title}
                   onChange={this.onChange}
                   error={errors.title} 
                 />
                 <TextAreaFieldGroup
-                  type="text" 
+                  type="text"
+                  name="image"
                   placeholder="image URL"
                   value={this.state.image}
                   onChange={this.onChange}
