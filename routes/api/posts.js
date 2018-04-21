@@ -67,6 +67,37 @@ router.post(
   }
 );
 
+// @route   EDIT api/posts/:id/edit
+// @desc    EDIT and UPDATE post
+// @access  Private
+router.put('/:id/edit',
+  passport.authenticate('jwt', { session: false }), (req, res) => {
+    // check validation
+    const { errors, isValid } = validatePostInput(req.body);
+
+    const postFields = {};
+    postFields.user = req.user.id;
+    if(req.body.title) postFields.title = req.body.title;
+    if(req.body.image) postFields.image = req.body.image;
+    if(req.body.text) postFields.text = req.body.text;
+    Post.findOne({ user: req.user.id }).then(post => {
+      // Check for post owner
+      if (post.user.toString() !== req.user.id) {
+        return res
+          .status(401)
+          .json({ notauthorized: 'User not authorized' });
+      } else {
+        // UPDATE
+       Post.findOneAndUpdate(
+          { user: req.user.id },
+          { $set: postFields },
+          { new: true }
+        ).then(post => res.json(post));
+      }
+    })
+  }
+);
+
 // @route   DELETE api/posts/:id
 // @desc    Delete post
 // @access  Private
@@ -190,6 +221,77 @@ router.post(
   }
 );
 
+// @route   POST api/posts/comment/:id/:comment_id/edit
+// @desc    Edit and Update comment to same post
+// @access  Private
+
+// router.put(
+//   'comment/:id/:comment_id/edit',
+//   passport.authenticate('jwt', { session: false }), (req, res) => {
+//     // check validation
+//     const { errors, isValid } = validateCommentInput(req.body);
+
+//     const commentFields = {};
+//     commentFields.user = req.user.id;
+//     if(req.body.text) commentFields.text = req.body.text;
+//     Post.findOne({ user: req.user.id }).then(post => {
+//       // Check for post owner
+//         if (
+//           post.comments.filter(comment => 
+//             comment._id.toString() === req.params.comment_id).length === 0){
+//               return res
+//                 .status(404)
+//                 .json({ commentnotexists: 'Comment does not exist' });
+//             } else {
+//             // UPDATE
+//              Post.findOneAndUpdate(
+//                 { user: req.user.id },
+//                 { $set: commentFields },
+//                 { new: true }
+//               ).then(post => res.json(post));
+//             }
+//     })
+//   }
+
+// );
+
+// ===========ATTEMPTED COMMENT EDIT ROUTE==============
+// @route   POST api/posts/comment/:id/:comment_id/edit
+// @desc    Edit and Update comment to same post
+// @access  Private
+// router.put(
+//   '/comment/:id/:comment_id',
+//   passport.authenticate('jwt', { session: false }),
+//   (req, res) => {
+//     Post.findById(req.params.id)
+//       .then(post => {
+//         // Check to see if comment exists
+//         if (
+//           post.comments.filter(
+//             comment => comment._id.toString() === req.params.comment_id
+//           ).length === 0
+//         ) {
+//           return res
+//             .status(404)
+//             .json({ commentnotexists: 'Comment does not exist' });
+//         }
+
+//       // MY FAIL ATTEMPT
+
+//       //   const comment = post.comments
+
+//       //   comment.findOneAndUpdate( 
+//       //     {_id: req.params.id },
+//       //     {text: req.body },
+//       //     {new: true}
+//       //   ).then(comment => res.json(comment));
+
+//       //   comment.save().then(comment => res.json(comment));
+//       // })
+//       // .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
+//   }
+// );
+
 // @route   DELETE api/posts/comment/:id/:comment_id
 // @desc    Remove comment from post
 // @access  Private
@@ -214,6 +316,7 @@ router.delete(
         const removeIndex = post.comments
           .map(item => item._id.toString())
           .indexOf(req.params.comment_id);
+          console.log(req.params.comment_id);
 
         // Splice comment out of array
         post.comments.splice(removeIndex, 1);
