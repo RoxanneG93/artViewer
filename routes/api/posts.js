@@ -27,16 +27,17 @@ router.get("/", (req, res) => {
     .catch(err => res.status(404).json({ nopostsfound: "No posts found" }));
 });
 
-// @route   GET api/posts/:id
-// @desc    Get post by id
-// @access  Public
-router.get("/:id", (req, res) => {
-  Post.findById(req.params.id)
-    .then(post => res.json(post))
-    .catch(err =>
-      res.status(404).json({ nopostfound: "No post found with that ID" })
-    );
-});
+// Fail ATTEMPT AT ONE POST ROUTE
+// // @route   GET api/posts/:id
+// // @desc    Get post by id
+// // @access  Public
+// router.get("/:id", (req, res) => {
+//   Post.findById(req.params.id)
+//     .then(post => res.json(post))
+//     .catch(err =>
+//       res.status(404).json({ nopostfound: "No post found with that ID" })
+//     );
+// });
 
 //find all posts by single user
 // GET api/posts/user/:id
@@ -254,39 +255,6 @@ router.post(
   }
 );
 
-// @route   POST api/posts/comment/:id/:comment_id/edit
-// @desc    Edit and Update comment to same post
-// @access  Private
-
-// router.put(
-//   'comment/:id/:comment_id/edit',
-//   passport.authenticate('jwt', { session: false }), (req, res) => {
-//     // check validation
-//     const { errors, isValid } = validateCommentInput(req.body);
-
-//     const commentFields = {};
-//     commentFields.user = req.user.id;
-//     if(req.body.text) commentFields.text = req.body.text;
-//     Post.findOne({ user: req.user.id }).then(post => {
-//       // Check for post owner
-//         if (
-//           post.comments.filter(comment =>
-//             comment._id.toString() === req.params.comment_id).length === 0){
-//               return res
-//                 .status(404)
-//                 .json({ commentnotexists: 'Comment does not exist' });
-//             } else {
-//             // UPDATE
-//              Post.findOneAndUpdate(
-//                 { user: req.user.id },
-//                 { $set: commentFields },
-//                 { new: true }
-//               ).then(post => res.json(post));
-//             }
-//     })
-//   }
-
-// );
 
 // ===========ATTEMPTED COMMENT EDIT ROUTE==============
 // @route   POST api/posts/comment/:id/:comment_id/edit
@@ -299,30 +267,49 @@ router.post(
 //     Post.findById(req.params.id)
 //       .then(post => {
 //         // Check to see if comment exists
-//         if (
-//           post.comments.filter(
-//             comment => comment._id.toString() === req.params.comment_id
-//           ).length === 0
-//         ) {
-//           return res
-//             .status(404)
-//             .json({ commentnotexists: 'Comment does not exist' });
-//         }
+//         // if (
+//         //   post.comments.filter(
+//         //     comment => comment._id.toString() === req.params.comment_id
+//         //   )
+//         // ) {
+//         //   console.log(comment);
+//         // }
+
+//         // Get remove index
+//         // const removeIndex = post.comments
+//         //   .map(item => item._id.toString())
+//         //   .indexOf(req.params.comment_id);
+//         // console.log(req.params.comment_id);
+
+//         const commentMatch = post.comments.filter(comment => 
+//           comment._id.toString() === req.params.comment_id).them(comment => res.json(comment));
+//         console.log(commentMatch)
+
+//         // Splice comment out of array
+//         // post.comments.splice(removeIndex, 1);
+
+//         // .then(post => res.json(post));
+//       })
+//       .catch(err => res.status(404).json({ postnotfound: "No post found" }));
 
 //       // MY FAIL ATTEMPT
 
-//       //   const comment = post.comments
+//         // const comment = post.comments
+//         // console.log(post.comments);
+
+//         //  if (post.comments.filter(comment => comment._id.toString() === req.params.comment_id
+//         //   ) {
+//         //     console.log(comment);
+//         //  }
 
 //       //   comment.findOneAndUpdate(
-//       //     {_id: req.params.id },
-//       //     {text: req.body },
+//       //     {id: req.params.comment_id },
+//       //     {$set:{text: req.body }},
 //       //     {new: true}
-//       //   ).then(comment => res.json(comment));
-
-//       //   comment.save().then(comment => res.json(comment));
+//       //   ).save().then(comment => res.json(comment));
 //       // })
 //       // .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
-//   }
+//     }
 // );
 
 // @route   DELETE api/posts/comment/:id/:comment_id
