@@ -80,7 +80,7 @@ router.post(
 // @desc    EDIT and UPDATE post
 // @access  Private
 router.put(
-  "/:id/edit",
+  "/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     // check validation
@@ -268,38 +268,44 @@ router.post(
 // @route   POST api/posts/comment/:id/:comment_id/edit
 // @desc    Edit and Update comment to same post
 // @access  Private
-// router.put(
-//   '/comment/:id/:comment_id',
-//   passport.authenticate('jwt', { session: false }),
-//   (req, res) => {
-//     Post.findById(req.params.id)
-//       .then(post => {
-//         // Check to see if comment exists
-//         if (
-//           post.comments.filter(
-//             comment => comment._id.toString() === req.params.comment_id
-//           ).length === 0
-//         ) {
-//           return res
-//             .status(404)
-//             .json({ commentnotexists: 'Comment does not exist' });
-//         }
+router.put(
+  "/comment/:id/:comment_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Post.findById(req.params.id)
+      .then(post => {
+        // Check to see if comment exists
+        if (
+          post.comments.filter(
+            comment => comment._id.toString() === req.params.comment_id
+          ).length === 0
+        ) {
+          return res
+            .status(404)
+            .json({ commentnotexists: "Comment does not exist" });
+        }
 
-//       // MY FAIL ATTEMPT
+        // MY FAIL ATTEMPT
 
-//       //   const comment = post.comments
+        const comments = post.comments;
 
-//       //   comment.findOneAndUpdate(
-//       //     {_id: req.params.id },
-//       //     {text: req.body },
-//       //     {new: true}
-//       //   ).then(comment => res.json(comment));
+        comments.forEach(comment => {
+          if (comment._id == req.params.comment_id) {
+            comment.text = req.body.text;
+          }
+        });
 
-//       //   comment.save().then(comment => res.json(comment));
-//       // })
-//       // .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
-//   }
-// );
+        // comment.findOneAndUpdate(
+        //   {_id: req.params.id },
+        //   {text: req.body },
+        //   {new: true}
+        // ).then(comment => res.json(comment));
+
+        post.save().then(post => res.json(post));
+      })
+      .catch(err => res.status(404).json({ postnotfound: "No post found" }));
+  }
+);
 
 // @route   DELETE api/posts/comment/:id/:comment_id
 // @desc    Remove comment from post
