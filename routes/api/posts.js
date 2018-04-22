@@ -39,6 +39,30 @@ router.get('/:id', (req, res) => {
     );
 });
 
+// @route   GET api/posts/user_id
+// @desc    Get ALL posts by user's id
+// @access  Public
+router.get(
+  '/:user_id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Post.findOne({ user: req.user.id }).then(post => {
+      Post.findById(req.params.id)
+        .then(post => {
+          if (post.user.filter(post => post.user.toString() === req.user.id)) {
+            return res.json("you have reached the user's posts");
+          }
+
+          // // Add user id to likes array
+          // post.likes.unshift({ user: req.user.id });
+
+          // post.save().then(post => res.json(post));
+        })
+        .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
+    });
+    console.log(req.params.id)
+  }
+);
 // @route   POST api/posts
 // @desc    Create post
 // @access  Private
@@ -59,7 +83,7 @@ router.post(
       title: req.body.title,
       image: req.body.image,
       name: req.body.name,
-      avatar: req.body.avatar,
+      profilepic: req.body.profilepic,
       user: req.user.id
     });
 

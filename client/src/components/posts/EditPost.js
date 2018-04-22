@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import { addPost } from '../../actions/postActions';
+import { editPost, getPost } from '../../actions/postActions';
+import isEmpty from '../../validation/is-empty';
 
-class PostForm extends Component {
+class EditPostForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,32 +16,52 @@ class PostForm extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    // this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentWillReceiveProps(newProps) {
-    if (newProps.errors) {
-      this.setState({ errors: newProps.errors });
+  componentDidMount() {
+    this.props.getPost();
+    console.log(this.props);
+  }
+
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+
+    if(nextProps.post.post){
+      const post = nextProps.post.post;
+      // if post feild 
+      post.title = !isEmpty(post.title) ? post.title : '';
+      post.image = !isEmpty(post.image) ? post.image : '';
+      post.text = !isEmpty(post.text) ? post.text : '';
+
+      // set component feidls state
+      this.setState({
+        title: post.title,
+        text: post.text,
+        image: post.image
+      });
     }
   }
 
-  onSubmit(e) {
-    e.preventDefault();
+  // onSubmit(e) {
+  //   e.preventDefault();
 
-    const { user } = this.props.auth;
+  //   const { user } = this.props.auth;
 
-    const newPost = {
-      title: this.state.title,
-      image: this.state.image,
-      text: this.state.text,
-      name: user.name,
-      profilepic: user.profilepic
-    };
+  //   const newPost = {
+  //     title: this.state.title,
+  //     image: this.state.image,
+  //     text: this.state.text,
+  //     name: user.name,
+  //     avatar: user.avatar
+  //   };
 
-    this.props.addPost(newPost);
-    this.setState({ title: '', image: '', text: ''});
-    this.props.history.push('/feed');
-  }
+  //   this.props.editPost(newPost);
+  //   this.setState({ title: '', image: '', text: ''});
+  // }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -52,7 +73,7 @@ class PostForm extends Component {
     return (
       <div className="post-form mb-3">
         <div className="card card-info">
-          <div className="card-header bg-info text-white">Submit to  your Gallery</div>
+          <div className="card-header bg-info text-white">Edit POST</div>
           <div className="card-body">
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
@@ -80,9 +101,13 @@ class PostForm extends Component {
                   error={errors.text}
                 />
               </div>
-              <button type="submit" className="btn btn-dark">
-                Submit
-              </button>
+                    <button
+                      
+                      type="button"
+                      className="btn btn-warning mr-1"
+                    >
+                    Submit
+                    </button>
             </form>
           </div>
         </div>
@@ -91,15 +116,17 @@ class PostForm extends Component {
   }
 }
 
-PostForm.propTypes = {
-  addPost: PropTypes.func.isRequired,
+EditPostForm.propTypes = {
+  getPost: PropTypes.func.isRequired,
+  editPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
+  post: state.post,
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addPost })(PostForm);
+export default connect(mapStateToProps, { editPost, getPost })(EditPostForm);

@@ -3,6 +3,7 @@ import {
   GET_POSTS,
   GET_POST,
   DELETE_POST,
+  EDIT_POST,
   POST_LOADING
 } from '../actions/types';
 
@@ -41,6 +42,11 @@ export default function(state = initialState, action) {
         ...state,
         posts: state.posts.filter(post => post._id !== action.payload)
       };
+    case EDIT_POST:
+      return {
+        ...state,
+        post: action.payload
+      }
     default:
       return state;
   }

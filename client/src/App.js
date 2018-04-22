@@ -20,7 +20,9 @@ import CreateProfile from './components/create-profile/CreateProfile';
 import EditProfile from './components/edit-profile/EditProfile';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
+import PostForm from './components/posts/PostForm';
 import Posts from './components/posts/Posts';
+import EditPostForm from './components/posts/EditPost';
 import Post from './components/post/Post';
 import NotFound from './components/not-found/NotFound';
 
@@ -36,7 +38,7 @@ if (localStorage.jwtToken) {
   store.dispatch(setCurrentUser(decoded));
 
   // Check for expired token
-  const currentTime = Date.now() / 1000;
+  const currentTime = Date.now() / 2000;
   if (decoded.exp < currentTime) {
     // Logout user
     store.dispatch(logoutUser());
@@ -58,8 +60,7 @@ class App extends Component {
             <div className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
-              <Route exact path="/profiles" component={Profiles} />
-              <Route exact path="/profile/:handle" component={Profile} />
+              <Route exact path="/profile/:username" component={Profile} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
@@ -81,7 +82,13 @@ class App extends Component {
                 <PrivateRoute exact path="/feed" component={Posts} />
               </Switch>
               <Switch>
+                <PrivateRoute exact path="/feed/new" component={PostForm} />
+              </Switch>
+              <Switch>
                 <PrivateRoute exact path="/post/:id" component={Post} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/post/:id/edit" component={EditPostForm} />
               </Switch>
               <Route exact path="/not-found" component={NotFound} />
             </div>

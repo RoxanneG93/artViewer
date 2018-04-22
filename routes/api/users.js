@@ -29,16 +29,16 @@ router.post('/register', (req, res) => {
       errors.email = 'Email already exists';
       return res.status(400).json(errors);
     } else {
-      const avatar = gravatar.url(req.body.email, {
-        s: '200', // Size
-        r: 'pg', // Rating
-        d: 'mm' // Default
-      });
+      // const avatar = gravatar.url(req.body.email, {
+      //   s: '200', // Size
+      //   r: 'pg', // Rating
+      //   d: 'mm' // Default
+      // });
 
       const newUser = new User({
         name: req.body.name,
         email: req.body.email,
-        avatar,
+        profilepic: req.body.profilepic,
         password: req.body.password
       });
 
@@ -82,7 +82,7 @@ router.post('/login', (req, res) => {
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
         // User Matched
-        const payload = { id: user.id, name: user.name, avatar: user.avatar }; // Create JWT Payload
+        const payload = { id: user.id, name: user.name, profilepic: user.profilepic }; // Create JWT Payload
 
         // Sign Token
         jwt.sign(

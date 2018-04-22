@@ -29,6 +29,32 @@ img {
   opacity: 0.9;
 }
 
+
+/*POST STYLING*/
+.post-container {
+  width: 214px;
+  height: 229px;
+  background-color: white;
+  margin: 16px;
+  padding: 1em;
+  vertical-align: top;
+  display: inline-block;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 1px 1px rgba(0,0,0,.2), 0 2px 2px rgba(0,0,0,.2);
+  position: relative;
+}
+
+.profile-pic{
+  width: 50px;
+  height: auto;
+  border-radius: 50%;
+}
+
+.post-title {
+  font-size: 25px;
+  font-weight: bold;
+
+}
+
 .latest-profiles-img {
   width: 40px;
   height: 40px;

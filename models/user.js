@@ -15,8 +15,8 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  avatar: {
-    type: String
+  profilepic: {
+    type: String,
   },
   date: {
     type: Date,
