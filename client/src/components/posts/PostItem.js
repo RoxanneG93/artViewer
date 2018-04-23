@@ -28,8 +28,9 @@ class PostItem extends Component {
   }
 
   render() {
-    const { post, auth, showActions } = this.props;
+    const { post, auth, showActions} = this.props;
     console.log(this.props);
+
 
     return (
       <div className="post-container container">
@@ -38,13 +39,13 @@ class PostItem extends Component {
             <a href="profile.html">
               <img
                 className="profile-pic"
-                src={`${auth.user.profilepic}`}
+                src={post.profilepic}
                 alt="#"
               />
             </a>
             <br />
           <p className="post-title">{post.title}</p>
-          <img src={post.image} alt="" />
+          <img className="img-thumbnail" src={post.image} alt="" />
             <p className="lead">{post.text}</p>
             {showActions ? (
               <span>

@@ -241,7 +241,7 @@ router.post(
         const newComment = {
           text: req.body.text,
           name: req.body.name,
-          avatar: req.body.avatar,
+          profilepic: req.body.profilepic,
           user: req.user.id
         };
 
@@ -255,62 +255,10 @@ router.post(
   }
 );
 
-
 // ===========ATTEMPTED COMMENT EDIT ROUTE==============
 // @route   POST api/posts/comment/:id/:comment_id/edit
 // @desc    Edit and Update comment to same post
 // @access  Private
-// router.put(
-//   '/comment/:id/:comment_id',
-//   passport.authenticate('jwt', { session: false }),
-//   (req, res) => {
-//     Post.findById(req.params.id)
-//       .then(post => {
-//         // Check to see if comment exists
-//         // if (
-//         //   post.comments.filter(
-//         //     comment => comment._id.toString() === req.params.comment_id
-//         //   )
-//         // ) {
-//         //   console.log(comment);
-//         // }
-
-//         // Get remove index
-//         // const removeIndex = post.comments
-//         //   .map(item => item._id.toString())
-//         //   .indexOf(req.params.comment_id);
-//         // console.log(req.params.comment_id);
-
-//         const commentMatch = post.comments.filter(comment => 
-//           comment._id.toString() === req.params.comment_id).them(comment => res.json(comment));
-//         console.log(commentMatch)
-
-//         // Splice comment out of array
-//         // post.comments.splice(removeIndex, 1);
-
-//         // .then(post => res.json(post));
-//       })
-//       .catch(err => res.status(404).json({ postnotfound: "No post found" }));
-
-//       // MY FAIL ATTEMPT
-
-//         // const comment = post.comments
-//         // console.log(post.comments);
-
-//         //  if (post.comments.filter(comment => comment._id.toString() === req.params.comment_id
-//         //   ) {
-//         //     console.log(comment);
-//         //  }
-
-//       //   comment.findOneAndUpdate(
-//       //     {id: req.params.comment_id },
-//       //     {$set:{text: req.body }},
-//       //     {new: true}
-//       //   ).save().then(comment => res.json(comment));
-//       // })
-//       // .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
-//     }
-// );
 router.put(
   "/comment/:id/:comment_id",
   passport.authenticate("jwt", { session: false }),
@@ -338,13 +286,8 @@ router.put(
           }
         });
 
-        // comment.findOneAndUpdate(
-        //   {_id: req.params.id },
-        //   {text: req.body },
-        //   {new: true}
-        // ).then(comment => res.json(comment));
-
         post.save().then(post => res.json(post));
+        
       })
       .catch(err => res.status(404).json({ postnotfound: "No post found" }));
   }

@@ -16,7 +16,7 @@ const UserSchema = new Schema({
     required: true
   },
   profilepic: {
-    type: String,
+    type: String
   },
   date: {
     type: Date,

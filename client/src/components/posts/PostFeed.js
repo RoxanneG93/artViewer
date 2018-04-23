@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import PostItem from './PostItem';
+import MainPostView from './MainPostView';
 
 class PostFeed extends Component {
   render() {
     const { posts } = this.props;
 
-    return posts.map(post => <PostItem key={post._id} post={post} />);
+    return posts.map(post => <MainPostView key={post._id} post={post} />);
   }
 }
 

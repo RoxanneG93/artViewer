@@ -11,10 +11,6 @@ const ProfileSchema = new Schema({
     type: String,
     max: 100
   },
-  profilepic: {
-    type: String,
-    ref: 'users'
-  },
   website: {
     type: String
   },
