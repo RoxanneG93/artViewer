@@ -29,7 +29,6 @@ img {
   opacity: 0.9;
 }
 
-
 /*POST STYLING*/
 .post-container {
   width: 325px;
@@ -39,10 +38,10 @@ img {
   margin: 16px;
   vertical-align: bottom;
   display: inline-block;
-  box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 1px 1px rgba(0,0,0,.2), 0 2px 2px rgba(0,0,0,.2);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.2),
+    0 2px 2px rgba(0, 0, 0, 0.2);
   position: relative;
   border: 2px solid blue;
-
 }
 
 .image {
@@ -51,15 +50,15 @@ img {
 }
 
 .overlay {
-  position: absolute; 
-  bottom: 0; 
+  position: absolute;
+  bottom: 0;
   background: rgb(0, 0, 0);
-  background-color: rgba(0,0,0,0.2); /* Black see-through */
-  color: #f1f1f1; 
+  background-color: rgba(0, 0, 0, 0.2); /* Black see-through */
+  color: #f1f1f1;
   height: 100%;
   width: 100%;
-  transition: .5s ease;
-  opacity:0;
+  transition: 0.5s ease;
+  opacity: 0;
   color: white;
   font-size: 10px;
   /*padding: 20px;*/
@@ -81,7 +80,6 @@ img {
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   border: 5px solid red;
-
 }
 
 .text-container .title {
@@ -120,9 +118,10 @@ img {
   border: 5px solid yellow;
 }
 
-
-
-.profile-pic{
+.likes {
+  display: block;
+}
+.profile-pic {
   width: 50px;
   height: auto;
   border-radius: 50%;
@@ -131,7 +130,6 @@ img {
 .post-title {
   font-size: 25px;
   font-weight: bold;
-
 }
 
 .latest-profiles-img {
@@ -145,4 +143,8 @@ img {
 
 .text-center {
   text-align: center;
+}
+
+.overlayTitle {
+  font-size: 2rem;
 }

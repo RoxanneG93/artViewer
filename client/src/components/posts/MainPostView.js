@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import classnames from 'classnames';
-import { Link } from 'react-router-dom';
-import { deletePost,  addLike, removeLike } from '../../actions/postActions';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import classnames from "classnames";
+import { Link } from "react-router-dom";
+import { deletePost, addLike, removeLike } from "../../actions/postActions";
 
 class MainPostView extends Component {
   onDeleteClick(id) {
@@ -28,37 +28,38 @@ class MainPostView extends Component {
   }
 
   render() {
-    const { post, auth, showActions} = this.props;
+    const { post, auth, showActions } = this.props;
     console.log(this.props);
 
     return (
       <div className="post-container">
-          <img className="image" src={post.image} />
-          <div className="overlay">
-            <div className="text-container">
-              <h1 className="title">{post.title}</h1>
-              <span className="user container">
-                <img src={post.profilepic} alt="supposed to be username" />
-                <p>{post.name}</p>
-                {showActions ? (
-                <span className="likes">
-                  <a
-                    onClick={this.onLikeClick.bind(this, post._id)}
-                    className="">
-                    <i
-                      className={classnames('far fa-heart fa-5x', {
-                        'text-info': this.findUserLike(post.likes)
-                      })}
-                    />
-                    <span className="">{post.likes.length}</span>
-                  </a>
-                </span>
-                ) : null}
-              </span>
-            </div>
-          </div>
+        <img className="image" src={post.image} />
+        <div className="overlay">
+          {/* <div className="text-container"> */}
+          <h1 className="overlayTitle">{post.title}</h1>
+          {/* <span className="user container"> */}
+          <img
+            src={post.profilepic}
+            alt="profile picture"
+            className="latest-profiles-img"
+          />
+          {showActions ? (
+            <a
+              onClick={this.onLikeClick.bind(this, post._id)}
+              className="likes"
+            >
+              <div
+                className={classnames("far fa-heart fa-5x", {
+                  "text-info": this.findUserLike(post.likes)
+                })}
+              />
+              <span className="">{post.likes.length}</span>
+            </a>
+          ) : null}
+          {/* </span> */}
+          {/* </div> */}
+        </div>
       </div>
-
     );
   }
 }
@@ -80,5 +81,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { deletePost, addLike, removeLike })(
-  MainPostView 
+  MainPostView
 );
