@@ -33,22 +33,25 @@ class PostItem extends Component {
 
 
     return (
-      <div className="post-container container">
-        <div className="row">
-          <div className="col-md post-user-display">
-            <a href="profile.html">
-              <img
-                className="profile-pic"
-                src={post.profilepic}
-                alt="#"
-              />
-            </a>
-            <br />
-          <p className="post-title">{post.title}</p>
-          <img className="img-thumbnail" src={post.image} alt="" />
-            <p className="lead">{post.text}</p>
+      <div className="single-post-container container-fluid">
+        <div className="post-image container">
+          <img className="img" src={post.image} alt="" />
+        </div>
+        <h1 className="post-title">{post.title}</h1>
+        <p className="post-user">Submitted by 
+          <a href="profile.html">
+            <img
+              className="profile-pic"
+              src={post.profilepic}
+              alt="#"
+            />
+          </a>
+        </p>
+        <hr />
+        <p className="post-text">{post.text}</p>
+        <div className="col-md-10">
             {showActions ? (
-              <span>
+              <div className="buttons">
                 <button
                   onClick={this.onLikeClick.bind(this, post._id)}
                   type="button"
@@ -72,22 +75,17 @@ class PostItem extends Component {
                   Comments
                 </Link>
                 {post.user === auth.user.id ? (
-                  <div className="post-buttons">
-                    <button
-                      onClick={this.onDeleteClick.bind(this, post._id)}
-                      type="button"
-                      className="btn btn-danger mr-1"
-                    >
-                      <i className="fas fa-times" />
-                    </button>
-                    <Link to ={`/post/${post._id}/edit`} className="btn btn-warning mr-1">EDIT </Link>
-
-                  </div>
+                  <button
+                    onClick={this.onDeleteClick.bind(this, post._id)}
+                    type="button"
+                    className="btn btn-danger mr-1"
+                  >
+                    <i className="fas fa-times" />
+                  </button>
                 ) : null}
-              </span>
+              </div>
             ) : null}
           </div>
-        </div>
       </div>
     );
   }

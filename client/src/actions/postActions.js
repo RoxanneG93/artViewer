@@ -68,6 +68,25 @@ export const getPost = id => dispatch => {
     );
 };
 
+// Get All User's Posts
+export const getUserPosts = user_id => dispatch => {
+  dispatch(setPostLoading());
+  axios
+    .get(`/api/posts/${user_id}`)
+    .then(res =>
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_POST,
+        payload: null
+      })
+    );
+};
+
 // Delete Post
 export const deletePost = id => dispatch => {
   axios

@@ -18,7 +18,7 @@ const validateCommentInput = require("../../validation/comment");
 router.get("/test", (req, res) => res.json({ msg: "Posts Works" }));
 
 // @route   GET api/posts
-// @desc    Get posts
+// @desc    Get ALL USERS posts
 // @access  Public
 router.get("/", (req, res) => {
   Post.find()
@@ -28,26 +28,26 @@ router.get("/", (req, res) => {
 });
 
 // Fail ATTEMPT AT ONE POST ROUTE
-// // @route   GET api/posts/:id
-// // @desc    Get post by id
-// // @access  Public
-// router.get("/:id", (req, res) => {
-//   Post.findById(req.params.id)
-//     .then(post => res.json(post))
-//     .catch(err =>
-//       res.status(404).json({ nopostfound: "No post found with that ID" })
-//     );
-// });
-
-//find all posts by single user
-// GET api/posts/user/:id
-router.get("/user/:id", (req, res) => {
-  Post.find({ user: req.params.id })
-    .then(posts => res.json(posts))
+// @route   GET api/posts/:id
+// @desc    Get post by id
+// @access  Public
+router.get("/:id", (req, res) => {
+  Post.findById(req.params.id)
+    .then(post => res.json(post))
     .catch(err =>
-      res.status(404).json({ nopostsfound: "No posts found for this user" })
+      res.status(404).json({ nopostfound: "No post found with that ID" })
     );
 });
+
+// //find all posts by single user
+// // GET api/posts/user/:id
+// router.get("/user/:id", (req, res) => {
+//   Post.find({ user: req.params.id })
+//     .then(posts => res.json(posts))
+//     .catch(err =>
+//       res.status(404).json({ nopostsfound: "No posts found for this user" })
+//     );
+// });
 
 // @route   GET api/posts/user_id
 // @desc    Get ALL posts by user's id
@@ -287,7 +287,7 @@ router.put(
         });
 
         post.save().then(post => res.json(post));
-        
+
       })
       .catch(err => res.status(404).json({ postnotfound: "No post found" }));
   }
