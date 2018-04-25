@@ -115,30 +115,31 @@ router.post(
     });
 
     newPost.save().then(post => res.json(post));
+    console.log(post);
   }
 );
 
 // @route   GET api/posts/:id/edit
 // @desc    Get post by id in for the dit form
 // @access  Private
-router.get(
-  '/:id/edit',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    Post.findById(req.params.id)
-      .then(post => res.json(post))
-      .catch(err =>
-        res.status(404).json({ nopostfound: "No post found with that ID" })
-    );
-  }
-);
+// router.get(
+//   '/:id/edit',
+//   passport.authenticate('jwt', { session: false }),
+//   (req, res) => {
+//     Post.findById(req.params.id)
+//       .then(post => res.json(post))
+//       .catch(err =>
+//         res.status(404).json({ nopostfound: "No post found with that ID" })
+//     );
+//   }
+// );
 
 
 // @route   EDIT api/posts/:id/edit
 // @desc    EDIT and UPDATE post
 // @access  Private
 router.put(
-  "/:id",
+  "/:id/edit",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     // check validation
@@ -149,17 +150,20 @@ router.put(
     if (req.body.title) postFields.title = req.body.title;
     if (req.body.image) postFields.image = req.body.image;
     if (req.body.text) postFields.text = req.body.text;
-    Post.findOne({ user: req.user.id }).then(post => {
+    Post.findById(req.params.id).then(post => {
       // Check for post owner
       if (post.user.toString() !== req.user.id) {
         return res.status(401).json({ notauthorized: "User not authorized" });
       } else {
+
+
         // UPDATE
         Post.findOneAndUpdate(
-          { user: req.user.id },
+          { _id: req.params.id },
           { $set: postFields },
           { new: true }
         ).then(post => res.json(post));
+        console.log(post);
       }
     });
   }
