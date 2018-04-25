@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import { addPost, getCurrentPost } from '../../actions/postActions';
+import { addPost, getPost } from '../../actions/postActions';
 import isEmpty from '../../validation/is-empty';
 
 class EditPost extends Component {
@@ -20,7 +20,7 @@ class EditPost extends Component {
   }
 
   componentDidMount() {
-    this.props.getCurrentPost();
+    this.props.getPost(this.props.match.params.id);
     console.log(this.props);
   }
 
@@ -55,7 +55,7 @@ class EditPost extends Component {
       text: this.state.text
     };
 
-    this.props.addPost(updatePost);
+    this.props.addPost(updatePost, this.props.history);
   }
 
   onChange(e) {
@@ -116,8 +116,9 @@ class EditPost extends Component {
 
 EditPost.propTypes = {
   addPost: PropTypes.func.isRequired,
-  getCurrentPost: PropTypes.func.isRequired,
+  getPost: PropTypes.func.isRequired,
   // editPost: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -128,4 +129,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addPost, getCurrentPost })(EditPost);
+export default connect(mapStateToProps, { addPost, getPost })(EditPost);

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import PostItem from '../posts/PostItem';
 import CommentForm from './CommentForm';
 import CommentFeed from './CommentFeed';
+import EditPost from '../posts/EditPost';
 import Spinner from '../common/Spinner';
 import { getPost } from '../../actions/postActions';
 
@@ -16,13 +17,14 @@ class Post extends Component {
   render() {
     const { post, loading } = this.props.post;
     let postContent;
+    console.log(this.props.post);
 
     if (post === null || loading || Object.keys(post).length === 0) {
       postContent = <Spinner />;
     } else {
       postContent = (
         <div>
-          <PostItem post={post} showActions={false} />
+          <PostItem post={post} showActions={true} />
           <CommentForm postId={post._id} />
           <CommentFeed postId={post._id} comments={post.comments} />
         </div>

@@ -73,13 +73,21 @@ class PostItem extends Component {
                   <i className="text-secondary fas fa-thumbs-down" />
                 </button>
                 {post.user === auth.user.id ? (
-                  <button
-                    onClick={this.onDeleteClick.bind(this, post._id)}
-                    type="button"
-                    className="btn btn-danger mr-1"
-                  >
-                    <i className="fas fa-times" />
-                  </button>
+                  <div>
+                    <button
+                      onClick={this.onDeleteClick.bind(this, post._id)}
+                      type="button"
+                      className="btn btn-danger mr-1"
+                    >
+                      <i className="fas fa-times" />
+                    </button>
+                    <Link 
+                      to={`/posts/${post._id}/edit`}
+                      type="button"
+                      className="btn btn-warning mr-1">
+                        Edit
+                      </Link>
+                  </div>
                 ) : null}
               </div>
             ) : null}
