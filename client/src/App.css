@@ -29,13 +29,19 @@ img {
   opacity: 0.9;
 }
 
+
+/* ======= NAVBAR STYLING ========*/
+
+.navbar-nav {
+
+}
 /*POST STYLING*/
 .post-container {
-  width: 325px;
+  width: 355px;
   height: auto;
   line-height: 0;
   background-color: white;
-  margin: 16px;
+  margin: 20px;
   vertical-align: bottom;
   display: inline-block;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.2),
@@ -132,6 +138,170 @@ img {
   font-weight: bold;
 }
 
+
+/*SINGLE POST.js PAGE STYLING*/
+.post-view {
+  width: 100%;
+  height: 1500px;
+  border: 5px solid black;
+}
+
+
+/* POST-ITEM.js STYLING*/
+
+.single-post-container {
+  width: 800px;
+  height: 800px;
+  border: 5px solid pink;
+  position: relative;
+  display: block;
+  margin-top: 20px;
+
+}
+
+.post-image {
+  width: 100%;
+  border: 3px solid purple;
+}
+
+.post-title {
+  font-size: 3em;
+}
+
+.buttons {
+  border: 5px solid green;
+}
+/*the like buttons and other button aren't showing...?*/
+
+
+/* Post.js STYLING*/
+
+.main-post-container {
+  border: 5px solid red;
+  width: 90%;
+}
+
+/* Posts.js STYlLING*/
+.home-text {
+  text-align: center;
+  font-size: 35px;
+  margin: 10px;
+}
+
+/* ======== THE COMMENT PAGES STYLING ========== */
+
+
+/*COMMENTFORM.js STYLING*/
+
+.comment-form {
+  width: 100%;
+  position: relative;
+  display: block;
+  margin: auto;
+  border: 5px solid red;
+}
+
+
+/*COMMENT_ITEM.js STYLING*/
+
+.comment-container{
+/*  position: relative;
+  background: white;
+  border-radius: .4em;
+  border: 5px solid orange;*/
+}
+
+/*.comment-container:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-right-color: white;
+  border-left: 0;
+  border-top: 0;
+  margin-top: -10px;
+  margin-left: -20px;
+}*/
+
+.user-link {
+  border: 3px solid purple;
+  display: inline-block;
+}
+
+
+.user-comment {
+  border: 3px solid navy;
+  display: inline-block;
+  position: relative;
+  background: white;
+  border-radius: .4em;
+  border: 5px solid orange;
+}
+
+.user-comment:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-right-color: white;
+  border-left: 0;
+  border-top: 0;
+  margin-top: -10px;
+  margin-left: -20px;
+}
+
+.comment-image {
+  height: 40%;
+  width: 40%;
+  border-radius: 50%;
+}
+
+
+
+/* ====== PROFILE PAGES STYLING ======= */
+
+/*Profile.js PAGE STYLING*/
+
+.return-profile-container {
+  border: 3px solid purple;
+  width: 100%;
+}
+
+.profile-container {
+  border: 3px solid black;
+  width: 100%;
+}
+
+.back-button {
+  border: 3px solid green;
+  height: 50px;
+}
+
+.about-container {
+  border: 3px solid yellow;
+}
+
+.profile-details {
+  border: 3px solid pink;
+  margin: 0;
+}
+.user-posts-container {
+  border: 3px solid orange;
+  margin: 0;
+}
+
+/* ProfileAbout.js STLYING*/
+
+.profile-heading {
+  border: 3px solid red;
+}
+
 .latest-profiles-img {
   width: 40px;
   height: 40px;
@@ -147,4 +317,11 @@ img {
 
 .overlayTitle {
   font-size: 2rem;
+}
+
+/* ===== EXTRAS STYLING =====*/
+
+.carousel-container {
+  border: 5px solid blue;
+
 }

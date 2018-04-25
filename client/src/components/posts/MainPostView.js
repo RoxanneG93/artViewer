@@ -3,12 +3,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
 import { Link } from "react-router-dom";
-import { deletePost, addLike, removeLike } from "../../actions/postActions";
+import { addLike, removeLike } from "../../actions/postActions";
 
 class MainPostView extends Component {
-  onDeleteClick(id) {
-    this.props.deletePost(id);
-  }
 
   onLikeClick(id) {
     this.props.addLike(id);
@@ -32,7 +29,8 @@ class MainPostView extends Component {
     console.log(this.props);
 
     return (
-      <div className="post-container">
+      
+      <Link to={`/posts/${post._id}`} className="post-container" >
         <img className="image" src={post.image} />
         <div className="overlay">
           {/* <div className="text-container"> */}
@@ -43,6 +41,7 @@ class MainPostView extends Component {
             alt="profile picture"
             className="latest-profiles-img"
           />
+          <p>username goes here</p>
           {showActions ? (
             <a
               onClick={this.onLikeClick.bind(this, post._id)}
@@ -59,7 +58,7 @@ class MainPostView extends Component {
           {/* </span> */}
           {/* </div> */}
         </div>
-      </div>
+      </Link>
     );
   }
 }
@@ -69,7 +68,6 @@ MainPostView.defaultProps = {
 };
 
 MainPostView.propTypes = {
-  deletePost: PropTypes.func.isRequired,
   addLike: PropTypes.func.isRequired,
   removeLike: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
@@ -80,6 +78,6 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { deletePost, addLike, removeLike })(
+export default connect(mapStateToProps, { addLike, removeLike })(
   MainPostView
 );

@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import ProfileHeader from './ProfileHeader';
 import ProfileAbout from './ProfileAbout';
+import ProfileHeader from './ProfileHeader';
 import Spinner from '../common/Spinner';
 import { getProfileByUsername } from '../../actions/profileActions';
+// import UserPosts from '../posts/UserPosts';
 
 class Profile extends Component {
   componentDidMount() {
@@ -28,29 +29,31 @@ class Profile extends Component {
       profileContent = <Spinner />;
     } else {
       profileContent = (
-        <div>
-          <div className="row">
-            <div className="col-md-6">
-              <Link to="/profiles" className="btn btn-light mb-3 float-left">
-                Back To Profiles
+        <div className="profile-container container-fluid">
+            <div className="back-button">
+              <Link to="/dashboard" className="btn btn-light mb-3 float-left">
+                Back To Dashboard
               </Link>
             </div>
-            <div className="col-md-6" />
-          </div>
-          <ProfileHeader profile={profile} />
-          <ProfileAbout profile={profile} />
+            <div className="about-container container-fluid">
+              <div className="row">
+                <div className="profile-details col-md-2">
+                  <ProfileAbout />
+                  <ProfileHeader />
+                </div>
+                <div className="user-posts-container col-md-2">
+                  <h1>User's Posts would go here</h1>
+                </div>
+              </div>
+            </div>
         </div>
       );
     }
 
     return (
-      <div className="profile">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">{profileContent}</div>
-          </div>
+        <div className="return-profile-container contianer-fluid">
+          {profileContent}
         </div>
-      </div>
     );
   }
 }

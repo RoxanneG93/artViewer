@@ -4,7 +4,8 @@ import {
   GET_POST,
   DELETE_POST,
   EDIT_POST,
-  POST_LOADING
+  POST_LOADING,
+  GET_CURRENT_POST
 } from '../actions/types';
 
 const initialState = {
@@ -46,6 +47,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         post: action.payload
+      };
+    case GET_CURRENT_POST:
+      return {
+        ...state,
+        post: null
       }
     default:
       return state;

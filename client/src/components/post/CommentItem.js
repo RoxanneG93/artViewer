@@ -13,21 +13,20 @@ class CommentItem extends Component {
     console.log(this.props);
 
     return (
-      <div className="card card-body mb-3">
+      <div className="comment-container container">
         <div className="row">
-          <div className="col-md-2">
+          <div className="user-link col-md-2">
             <a href="profile.html">
               <img
-                className="rounded-circle d-none d-md-block"
+                className="comment-image"
                 src={comment.profilepic}
                 alt=""
               />
+              <p>{comment.name}</p>
             </a>
-            <br />
           </div>
-          <div className="col-md-10">
-            <p>{comment.name}</p>
-            <p className="lead">{comment.text}</p>
+          <div className="user-comment col-md-10">
+            <p>{comment.text}</p>
             {comment.user === auth.user.id ? (
               <button
                 onClick={this.onDeleteClick.bind(this, postId, comment._id)}

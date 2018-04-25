@@ -18,18 +18,18 @@ class Navbar extends Component {
     const authLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/feed">
-            Post Feed
+          <Link className="nav-link" to="/feed/new">
+            Submit Pic
           </Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/dashboard">
-            Dashboard
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/feed/new">
-            Submit Pic
+            <img
+              className="rounded-circle"
+              src={user.profilepic}
+              alt={user.name}
+              style={{ width: '25px', marginRight: '5px' }}
+            />
           </Link>
         </li>
         <li className="nav-item">
@@ -38,12 +38,7 @@ class Navbar extends Component {
             onClick={this.onLogoutClick.bind(this)}
             className="nav-link"
           >
-            <img
-              className="rounded-circle"
-              src={user.profilepic}
-              alt={user.name}
-              style={{ width: '25px', marginRight: '5px' }}
-            />{' '}
+          {' '}
             Logout
           </a>
         </li>
@@ -68,8 +63,8 @@ class Navbar extends Component {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
         <div className="container">
-          <Link className="navbar-brand" to="/">
-            Art-Viewer
+          <Link className="navbar-brand" to="/feed">
+            ArtFolio
           </Link>
           <button
             className="navbar-toggler"
