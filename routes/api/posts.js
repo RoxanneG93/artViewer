@@ -22,6 +22,7 @@ router.get("/test", (req, res) => res.json({ msg: "Posts Works" }));
 // @access  Public
 router.get("/", (req, res) => {
   Post.find()
+    .populate("user", "profilepic")
     .then(posts => posts.sort((a, b) => b.likes.length - a.likes.length))
     .then(posts => res.json(posts))
     .catch(err => res.status(404).json({ nopostsfound: "No posts found" }));
@@ -43,6 +44,7 @@ router.get("/", (req, res) => {
 // GET api/posts/user/:id
 router.get("/user/:id", (req, res) => {
   Post.find({ user: req.params.id })
+    .populate("user", "profilepic")
     .then(posts => res.json(posts))
     .catch(err =>
       res.status(404).json({ nopostsfound: "No posts found for this user" })
@@ -53,11 +55,12 @@ router.get("/user/:id", (req, res) => {
 // @desc    Get ALL posts by user's id
 // @access  Public
 router.get(
-  '/:user_id',
-  passport.authenticate('jwt', { session: false }),
+  "/:user_id",
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Post.findOne({ user: req.user.id }).then(post => {
       Post.findById(req.params.id)
+        .populate("user", "profilepic")
         .then(post => {
           if (post.user.filter(post => post.user.toString() === req.user.id)) {
             return res.json("you have reached the user's posts");
@@ -68,9 +71,9 @@ router.get(
 
           // post.save().then(post => res.json(post));
         })
-        .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
+        .catch(err => res.status(404).json({ postnotfound: "No post found" }));
     });
-    console.log(req.params.id)
+    console.log(req.params.id);
   }
 );
 // @route   POST api/posts
@@ -93,7 +96,7 @@ router.post(
       title: req.body.title,
       image: req.body.image,
       name: req.body.name,
-      profilepic: req.body.profilepic,
+      profilepic: req.user.profilepic,
       user: req.user.id
     });
 
@@ -287,12 +290,10 @@ router.put(
         });
 
         post.save().then(post => res.json(post));
-        
       })
       .catch(err => res.status(404).json({ postnotfound: "No post found" }));
   }
 );
-
 
 // @route   DELETE api/posts/comment/:id/:comment_id
 // @desc    Remove comment from post
