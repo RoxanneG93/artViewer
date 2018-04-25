@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import { editPost, getPost } from '../../actions/postActions';
+import { addPost, getCurrentPost } from '../../actions/postActions';
 import isEmpty from '../../validation/is-empty';
 
-class EditPostForm extends Component {
+class EditPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,11 +16,11 @@ class EditPostForm extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
-    // this.onSubmit = this.onSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
-    this.props.getPost();
+    this.props.getCurrentPost();
     console.log(this.props);
   }
 
@@ -46,22 +46,17 @@ class EditPostForm extends Component {
     }
   }
 
-  // onSubmit(e) {
-  //   e.preventDefault();
+  onSubmit(e) {
+    e.preventDefault();
 
-  //   const { user } = this.props.auth;
+    const updatePost = {
+      title: this.state.title,
+      image: this.state.image,
+      text: this.state.text
+    };
 
-  //   const newPost = {
-  //     title: this.state.title,
-  //     image: this.state.image,
-  //     text: this.state.text,
-  //     name: user.name,
-  //     avatar: user.avatar
-  //   };
-
-  //   this.props.editPost(newPost);
-  //   this.setState({ title: '', image: '', text: ''});
-  // }
+    this.props.addPost(updatePost);
+  }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -100,6 +95,9 @@ class EditPostForm extends Component {
                   onChange={this.onChange}
                   error={errors.text}
                 />
+
+
+
               </div>
                     <button
                       
@@ -116,9 +114,10 @@ class EditPostForm extends Component {
   }
 }
 
-EditPostForm.propTypes = {
-  getPost: PropTypes.func.isRequired,
-  editPost: PropTypes.func.isRequired,
+EditPost.propTypes = {
+  addPost: PropTypes.func.isRequired,
+  getCurrentPost: PropTypes.func.isRequired,
+  // editPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -129,4 +128,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { editPost, getPost })(EditPostForm);
+export default connect(mapStateToProps, { addPost, getCurrentPost })(EditPost);

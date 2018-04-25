@@ -49,7 +49,7 @@ class PostItem extends Component {
         </p>
         <hr />
         <p className="post-text">{post.text}</p>
-        <div className="col-md-10">
+        <div className="container">
             {showActions ? (
               <div className="buttons">
                 <button
@@ -63,6 +63,7 @@ class PostItem extends Component {
                     })}
                   />
                   <span className="badge badge-light">{post.likes.length}</span>
+                  <span>LIKES</span>
                 </button>
                 <button
                   onClick={this.onUnlikeClick.bind(this, post._id)}
@@ -71,9 +72,6 @@ class PostItem extends Component {
                 >
                   <i className="text-secondary fas fa-thumbs-down" />
                 </button>
-                <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
-                  Comments
-                </Link>
                 {post.user === auth.user.id ? (
                   <button
                     onClick={this.onDeleteClick.bind(this, post._id)}

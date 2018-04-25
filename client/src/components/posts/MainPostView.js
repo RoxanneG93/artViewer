@@ -29,7 +29,8 @@ class MainPostView extends Component {
     console.log(this.props);
 
     return (
-      <Link to={`/post/${post._id}`} className="post-container" >
+      
+      <Link to={`/posts/${post._id}`} className="post-container" >
         <img className="image" src={post.image} />
         <div className="overlay">
           {/* <div className="text-container"> */}

@@ -5,10 +5,12 @@ import {
   GET_ERRORS,
   CLEAR_ERRORS,
   GET_POSTS,
+  GET_USER_POSTS,
   GET_POST,
   POST_LOADING,
   DELETE_POST,
-  EDIT_POST
+  EDIT_POST,
+  GET_CURRENT_POST
 } from './types';
 
 // Add Post
@@ -75,13 +77,13 @@ export const getUserPosts = user_id => dispatch => {
     .get(`/api/posts/${user_id}`)
     .then(res =>
       dispatch({
-        type: GET_POST,
+        type: GET_USER_POSTS,
         payload: res.data
       })
     )
     .catch(err =>
       dispatch({
-        type: GET_POST,
+        type: GET_USER_POSTS,
         payload: null
       })
     );
@@ -104,6 +106,26 @@ export const deletePost = id => dispatch => {
       })
     );
 };
+
+
+// GET CURRENT POST 
+export const getCurrentPost = id => dispatch => {
+  axios
+    .get(`/api/posts/${id}/edit`)
+    .then(res =>
+      dispatch({
+        type: GET_CURRENT_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 
 // EDIT Post
 export const editPost = id => dispatch => {

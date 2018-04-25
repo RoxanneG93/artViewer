@@ -5,6 +5,7 @@ import PostForm from './PostForm';
 import PostFeed from './PostFeed';
 import Spinner from '../common/Spinner';
 import { getPosts } from '../../actions/postActions';
+import Carousel from '../../extra/Carousel';
 
 class Posts extends Component {
   componentDidMount() {
@@ -22,14 +23,11 @@ class Posts extends Component {
     }
 
     return (
-      <div className="feed">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              {postContent}
-            </div>
-          </div>
-        </div>
+      <div className="main-post-container container-fluid">
+        <Carousel />
+        <hr />
+        <h1 className="home-text">Check out creations from fellow Artists below.</h1>
+        {postContent}
       </div>
     );
   }

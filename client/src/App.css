@@ -29,13 +29,19 @@ img {
   opacity: 0.9;
 }
 
+
+/* ======= NAVBAR STYLING ========*/
+
+.navbar-nav {
+
+}
 /*POST STYLING*/
 .post-container {
-  width: 325px;
+  width: 355px;
   height: auto;
   line-height: 0;
   background-color: white;
-  margin: 16px;
+  margin: 20px;
   vertical-align: bottom;
   display: inline-block;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.2),
@@ -136,7 +142,7 @@ img {
 /*SINGLE POST.js PAGE STYLING*/
 .post-view {
   width: 100%;
-  height: 100%;
+  height: 1500px;
   border: 5px solid black;
 }
 
@@ -145,7 +151,7 @@ img {
 
 .single-post-container {
   width: 800px;
-  height: 649px;
+  height: 800px;
   border: 5px solid pink;
   position: relative;
   display: block;
@@ -168,7 +174,21 @@ img {
 /*the like buttons and other button aren't showing...?*/
 
 
-/*THE COMMENT PAGES STYLING*/
+/* Post.js STYLING*/
+
+.main-post-container {
+  border: 5px solid red;
+  width: 90%;
+}
+
+/* Posts.js STYlLING*/
+.home-text {
+  text-align: center;
+  font-size: 35px;
+  margin: 10px;
+}
+
+/* ======== THE COMMENT PAGES STYLING ========== */
 
 
 /*COMMENTFORM.js STYLING*/
@@ -242,6 +262,46 @@ img {
   border-radius: 50%;
 }
 
+
+
+/* ====== PROFILE PAGES STYLING ======= */
+
+/*Profile.js PAGE STYLING*/
+
+.return-profile-container {
+  border: 3px solid purple;
+  width: 100%;
+}
+
+.profile-container {
+  border: 3px solid black;
+  width: 100%;
+}
+
+.back-button {
+  border: 3px solid green;
+  height: 50px;
+}
+
+.about-container {
+  border: 3px solid yellow;
+}
+
+.profile-details {
+  border: 3px solid pink;
+  margin: 0;
+}
+.user-posts-container {
+  border: 3px solid orange;
+  margin: 0;
+}
+
+/* ProfileAbout.js STLYING*/
+
+.profile-heading {
+  border: 3px solid red;
+}
+
 .latest-profiles-img {
   width: 40px;
   height: 40px;
@@ -257,4 +317,11 @@ img {
 
 .overlayTitle {
   font-size: 2rem;
+}
+
+/* ===== EXTRAS STYLING =====*/
+
+.carousel-container {
+  border: 5px solid blue;
+
 }

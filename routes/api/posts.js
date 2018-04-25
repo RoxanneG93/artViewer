@@ -27,7 +27,6 @@ router.get("/", (req, res) => {
     .catch(err => res.status(404).json({ nopostsfound: "No posts found" }));
 });
 
-// Fail ATTEMPT AT ONE POST ROUTE
 // @route   GET api/posts/:id
 // @desc    Get post by id
 // @access  Public
@@ -39,15 +38,6 @@ router.get("/:id", (req, res) => {
     );
 });
 
-// //find all posts by single user
-// // GET api/posts/user/:id
-// router.get("/user/:id", (req, res) => {
-//   Post.find({ user: req.params.id })
-//     .then(posts => res.json(posts))
-//     .catch(err =>
-//       res.status(404).json({ nopostsfound: "No posts found for this user" })
-//     );
-// });
 
 // @route   GET api/posts/user_id
 // @desc    Get ALL posts by user's id
@@ -73,6 +63,33 @@ router.get(
     console.log(req.params.id)
   }
 );
+
+// @route   GET api/posts/user_id
+// @desc    Get ALL posts by user's id
+// @access  Public
+// router.get(
+//   '/:username',
+//   passport.authenticate('jwt', { session: false }),
+//   (req, res) => {
+//     Post.findOne({ username: req.params.username })
+//       .populate('user', 'username')
+//       .then(post => {
+//       Post.findById(req.params.id)
+//         .then(post => {
+//           if (post.user.filter(post => post.user.toString() === req.user.id)) {
+//             return res.json("you have reached the user's posts");
+//           }
+
+//           // // Add user id to likes array
+//           // post.likes.unshift({ user: req.user.id });
+
+//           // post.save().then(post => res.json(post));
+//         })
+//         .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
+//     });
+//     console.log(req.params.id)
+//   }
+// );
 // @route   POST api/posts
 // @desc    Create post
 // @access  Private
@@ -100,6 +117,22 @@ router.post(
     newPost.save().then(post => res.json(post));
   }
 );
+
+// @route   GET api/posts/:id/edit
+// @desc    Get post by id in for the dit form
+// @access  Private
+router.get(
+  '/:id/edit',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Post.findById(req.params.id)
+      .then(post => res.json(post))
+      .catch(err =>
+        res.status(404).json({ nopostfound: "No post found with that ID" })
+    );
+  }
+);
+
 
 // @route   EDIT api/posts/:id/edit
 // @desc    EDIT and UPDATE post

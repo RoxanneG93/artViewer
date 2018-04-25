@@ -57,11 +57,11 @@ router.get('/all', (req, res) => {
     .catch(err => res.status(404).json({ profile: 'There are no profiles' }));
 });
 
-// @route   GET api/profile/username/:username
+// @route   GET api/profile/:username
 // @desc    Get profile by username
 // @access  Public
 
-router.get('/username/:username', (req, res) => {
+router.get('/:username', (req, res) => {
   const errors = {};
 
   Profile.findOne({ username: req.params.username })

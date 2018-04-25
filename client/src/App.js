@@ -21,7 +21,7 @@ import EditProfile from './components/edit-profile/EditProfile';
 import Profile from './components/profile/Profile';
 import PostForm from './components/posts/PostForm';
 import Posts from './components/posts/Posts';
-import EditPostForm from './components/posts/EditPost';
+import EditPost from './components/posts/EditPost';
 import Post from './components/post/Post';
 import NotFound from './components/not-found/NotFound';
 
@@ -56,7 +56,7 @@ class App extends Component {
           <div className="App">
             <Navbar />
             <Route exact path="/" component={Landing} />
-            <div className="container">
+            <div className="main-app container-fluid">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/profile/:username" component={Profile} />
@@ -84,10 +84,10 @@ class App extends Component {
                 <PrivateRoute exact path="/feed/new" component={PostForm} />
               </Switch>
               <Switch>
-                <PrivateRoute exact path="/post/:id" component={Post} />
+                <PrivateRoute exact path="/posts/:id" component={Post} />
               </Switch>
               <Switch>
-                <PrivateRoute exact path="/post/:id/edit" component={EditPostForm} />
+                <PrivateRoute exact path="/posts/:id/edit" component={EditPost} />
               </Switch>
               <Route exact path="/not-found" component={NotFound} />
             </div>
