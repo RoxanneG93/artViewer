@@ -1,42 +1,53 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from '../../validation/is-empty';
+import defaultImage from '../../img/profiledefault.png';
+
 
 class ProfileDetails extends Component {
   render() {
-    const { profile } = this.props;
-    console.log(this.props);
-
+    const { profile, user } = this.props;
+  
     // Get first name
     const firstName = profile.user.name.trim().split(' ')[0];
 
     // Skill List
     const interests = profile.interests.map((interest, index) => (
-      <ol key={index} className="p-3">
+      <ul key={index} className="list-group list-group-flush">
         <i className="" /> {interest}
-      </ol>
+      </ul>
     ));
 
     return (
-      <div className="container">
-        <div className="container" >
+      <div className="card text-center">
+        <div className="card-header">
+          <ul className="nav nav-tabs card-header-tabs">
+            <li className="nav-item">
+              <a clasName="nav-link active" href="#">Profile</a>
+            </li>
+            <li className="nav-item">
+              <a clasName="nav-link" href="#">Gallery</a>
+            </li>
+          </ul>
+        </div>
+        <div className="card-body" >
             <img
-              className="rounded-circle"
+              className="card-img-top"
               src={profile.user.profilepic}
-              alt=""
+              alt={defaultImage}
             />
             <h1 className="display-4 text-center">{profile.user.name}</h1>
             <p className="lead text-center">
-              {profile.occupation}{' '}
               {isEmpty(profile.username) ? null : (
-                <span>at {profile.username}</span>
+                <span>{profile.username}</span>
               )}
             </p>
-            {isEmpty(profile.location) ? null : <p>{profile.location}</p>}
+            <p>Occupation: <strong>{profile.occupation}</strong> </p>
+            Location: {isEmpty(profile.location) ? null : <p>{profile.location}</p>}
             <p>
                 {isEmpty(profile.website) ? null : (
                   <a
-                    className="text-white p-2"
+                    className="text-dark p-2"
                     href={profile.website}
                     target="_blank"
                   >
@@ -46,7 +57,7 @@ class ProfileDetails extends Component {
 
                 {isEmpty(profile.social && profile.social.twitter) ? null : (
                   <a
-                    className="text-white p-2"
+                    className="text-light p-2"
                     href={profile.social.twitter}
                     target="_blank"
                   >
@@ -56,7 +67,7 @@ class ProfileDetails extends Component {
 
                 {isEmpty(profile.social && profile.social.facebook) ? null : (
                   <a
-                    className="text-white p-2"
+                    className="text-primary p-2"
                     href={profile.social.facebook}
                     target="_blank"
                   >
@@ -66,7 +77,7 @@ class ProfileDetails extends Component {
 
                 {isEmpty(profile.social && profile.social.youtube) ? null : (
                   <a
-                    className="text-white p-2"
+                    className="text-danger p-2"
                     href={profile.social.youtube}
                     target="_blank"
                   >
@@ -76,7 +87,7 @@ class ProfileDetails extends Component {
 
                 {isEmpty(profile.social && profile.social.instagram) ? null : (
                   <a
-                    className="text-white p-2"
+                    className="text-warning p-2"
                     href={profile.social.instagram}
                     target="_blank"
                   >
@@ -84,25 +95,23 @@ class ProfileDetails extends Component {
                   </a>
                 )}
               </p>
-        </div>
-        <div className="container-fluid">
-          <div><h3 className="profile-heading">{firstName}'s Bio</h3></div>
-            <p className="lead">
-              {isEmpty(profile.bio) ? (
-                <span>{firstName} does not have a bio</span>
-              ) : (
-                <span>{profile.bio}</span>
-              )}
-            </p>
-          <hr />
-          <h3 className="profile-interests">Interests</h3>
-          <div className="row">
-            <div className="d-flex flex-wrap justify-content-center align-items-center">
-              {interests}
+              <div><h3 className="profile-heading">{firstName}'s Bio</h3></div>
+                <p className="lead">
+                  {isEmpty(profile.bio) ? (
+                    <span>{firstName} does not have a bio</span>
+                  ) : (
+                    <span>{profile.bio}</span>
+                  )}
+                </p>
+              <hr />
+              <h3 className="profile-interests">Interests</h3>
+              <div className="row">
+                <div className="d-flex flex-wrap justify-content-center align-items-center">
+                  {interests}
+                </div>
+              </div>
             </div>
-          </div>
         </div>
-      </div>
     );
   }
 }

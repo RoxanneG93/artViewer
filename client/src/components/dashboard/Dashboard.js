@@ -6,6 +6,8 @@ import { getCurrentProfile, deleteAccount } from '../../actions/profileActions';
 import Spinner from '../common/Spinner';
 import ProfileActions from './ProfileActions';
 
+import Profile from '../profile/Profile';
+
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
@@ -21,6 +23,7 @@ class Dashboard extends Component {
 
     let dashboardContent;
 
+
     if (profile === null || loading) {
       dashboardContent = <Spinner />;
     } else {
@@ -29,7 +32,7 @@ class Dashboard extends Component {
         dashboardContent = (
           <div>
             <p className="lead text-muted">
-              Welcome <Link to={`/profile/${profile.username}`}>{user.name}</Link>
+              Welcome <Link to={`/profile/username/${profile.username}`}>{user.name}</Link>
             </p>
             <ProfileActions />
             <div style={{ marginBottom: '60px' }} />

@@ -4,11 +4,13 @@ import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { editPost, getPost } from '../../actions/postActions';
 import isEmpty from '../../validation/is-empty';
+import { Link } from 'react-router-dom';
 
 class EditPost extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
+      _id: this.props.match.params.id,
       title: '',
       text: '',
       image: '',
@@ -31,11 +33,14 @@ class EditPost extends PureComponent {
       const post = nextProps.post.post;
     // Set component fields state
       this.setState({
+        _id: post._id,
         title: post.title,
         image: post.image,
         text: post.text
       });
     }
+    console.log("below is nextProps");
+    console.log(nextProps);
   }
 
   onSubmit(e) {
@@ -49,9 +54,11 @@ class EditPost extends PureComponent {
       text: this.state.text,
     };
 
-    this.props.dispatch(editPost(newPost));
-    this.setState({ title: '', image: '', text: ''});
-    this.props.history.push('/feed');
+    this.props.editPost(newPost);
+    console.log("below is newPost");
+    console.log(newPost);
+    // this.setState({ title: '', image: '', text: ''});
+    // this.props.history.push('/feed');
   }
 
   onChange(e) {
@@ -60,24 +67,27 @@ class EditPost extends PureComponent {
 
 
   render() {
-    const {post} = this.props.post;
-    console.log(this.props.post);
+    // const {post} = this.props.post;
+    // console.log(this.props.post);
     const { errors } = this.state;
     // console.log(this.props);
 
     return (
       <div className="post-form mb-3">
-        <div className="card card-info">
+        <Link to="/posts/:id" className="btn btn-light mb-3 float-left">
+          Back To Post
+        </Link>
+        <div className="form-card card-info">
           <div className="card-header bg-info text-white">Edit POST</div>
           <div className="card-body">
-            <form>
+            <form onSubmit={this.onSubmit}>
               <div className="form-group">
                 <TextAreaFieldGroup
                   type="text"
                   name="title"
                   placeholder="title"
                   value={this.state.title}
-                  onChange={(event)=>this.handleInput(event,'title')}
+                  onChange={this.onChange}
                   error={errors.title} 
                 />
                 <TextAreaFieldGroup
@@ -97,7 +107,6 @@ class EditPost extends PureComponent {
                 />
               </div>
               <button
-                onSubmit={this.onSubmit}
                 type="submit"
                 className="btn btn-warning mr-1"
               >
@@ -112,9 +121,9 @@ class EditPost extends PureComponent {
 }
 
 EditPost.propTypes = {
-  editPost: PropTypes.func.isRequired,
+  // addPost: PropTypes.func.isRequired,
   getPost: PropTypes.func.isRequired,
-  // editPost: PropTypes.func.isRequired,
+  editPost: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired

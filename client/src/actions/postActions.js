@@ -109,39 +109,52 @@ export const deletePost = id => dispatch => {
 
 
 // GET CURRENT POST 
-export const getCurrentPost = id => dispatch => {
-  axios
-    .get(`/api/posts/${id}/edit`)
-    .then(res =>
-      dispatch({
-        type: GET_CURRENT_POST,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
-};
+// export const getCurrentPost = id => dispatch => {
+//   axios
+//     .get(`/api/posts/${id}/edit`)
+//     .then(res =>
+//       dispatch({
+//         type: GET_CURRENT_POST,
+//         payload: res.data
+//       })
+//     )
+//     .catch(err =>
+//       dispatch({
+//         type: GET_ERRORS,
+//         payload: err.response.data
+//       })
+//     );
+// };
 
 
 // EDIT Post
-export const editPost = id => dispatch => {
-  axios.put(`/api/posts/${id}/edit`)
-        .then(res => dispatch({
-          type: EDIT_POST,
-          payload: res.data
+export const editPost = (id) => dispatch => {
+  axios.put(`/api/posts/edit/${id}`)
+        .then(res => 
+          dispatch({
+            type: EDIT_POST,
+            payload: res
         })
       )
-        .catch(err => dispatch({
+      .catch(err => 
+        dispatch({
           type: GET_ERRORS,
           payload: err.response.data
       })
     );
 };
 
+
+// export function editPost(id, data){
+//     const request = axios.post(`/api/posts/${id}/edit`,data)
+//                 .then(response => response.data);
+
+//     return {
+//         type:'EDIT_POST',
+//         payload:request
+//     }
+
+// }
 
 
 // // Create Profile
@@ -216,6 +229,41 @@ export const deleteComment = (postId, commentId) => dispatch => {
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
+      })
+    );
+};
+
+export const editComment = (postId, commentId, commentData) => dispatch => {
+  axios
+    .put(`/api/posts/comment/${postId}/${commentId}`, commentData)
+    .then(res =>
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+export const getComment = (postId, commentId) => dispatch => {
+  dispatch(setPostLoading());
+  axios
+    .get(`/api/posts/comment/${postId}/${commentId}`)
+    .then(res =>
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_POST,
+        payload: null
       })
     );
 };

@@ -30,7 +30,7 @@ module.exports = function validateRegisterInput(data) {
     errors.email = 'Email is invalid';
   }
 
-    if (!Validator.isEmail(data.profilepic)) {
+  if (Validator.isEmpty(data.profilepic)) {
     errors.profilepic = 'Profile Picure is required';
   }
 

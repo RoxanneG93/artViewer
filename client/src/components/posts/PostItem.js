@@ -82,7 +82,7 @@ class PostItem extends Component {
                       <i className="fas fa-times" />
                     </button>
                     <Link 
-                      to={`/posts/${post._id}/edit`}
+                      to={`/posts/edit/${post._id}`}
                       type="button"
                       className="btn btn-warning mr-1">
                         Edit

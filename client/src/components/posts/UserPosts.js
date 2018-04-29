@@ -1,41 +1,39 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PostForm from './PostForm';
 import PostFeed from './PostFeed';
 import Spinner from '../common/Spinner';
-import { getUserPosts } from '../../actions/postActions';
+import { getPosts } from '../../actions/postActions';
 
-class UserPosts extends Component {
-  // componentDidMount() {
-  //   this.props.getUserPosts(this.props.match.params.username);
-  // }
+class Posts extends Component {
+  componentDidMount() {
+    this.props.getPosts();
+  }
 
   render() {
     const { posts, loading } = this.props.post;
-    let userPosts;
+    let postContent;
 
     if (posts === null || loading) {
-      userPosts = <Spinner />;
+      postContent = <Spinner />;
     } else {
-      userPosts = <PostFeed posts={posts} />;
+      postContent = <PostFeed posts={posts} />;
     }
 
     return (
-      <div className="feed">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              {userPosts}
-            </div>
-          </div>
-        </div>
+      <div className="main-post-container container-fluid">
+        <hr />
+        <h1 className="home-text"
+        >Check out creations from fellow Artists below.</h1>
+        {postContent}
       </div>
     );
   }
 }
 
-UserPosts.propTypes = {
-  getUserPosts: PropTypes.func.isRequired,
+Posts.propTypes = {
+  getPosts: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired
 };
 
@@ -43,4 +41,4 @@ const mapStateToProps = state => ({
   post: state.post
 });
 
-export default connect(mapStateToProps, { getUserPosts })(UserPosts);
+export default connect(mapStateToProps, { getPosts })(Posts);

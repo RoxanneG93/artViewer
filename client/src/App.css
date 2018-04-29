@@ -188,6 +188,25 @@ img {
   margin: 10px;
 }
 
+
+/*POST FORM styling*/
+.post-form {
+  border: 1px solid red;
+}
+
+.form-card {
+  width: 50%;
+  height: 800px;
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card-header {
+  font-size: 25px;
+}
+
+
 /* ======== THE COMMENT PAGES STYLING ========== */
 
 
@@ -287,13 +306,20 @@ img {
   border: 3px solid yellow;
 }
 
+.about-row {
+  width: 100%;
+  border: 1px solid green;
+  margin: 0;
+  padding: 0;
+}
 .profile-details {
   border: 3px solid pink;
-  margin: 0;
+  display: inline-block;
 }
 .user-posts-container {
   border: 3px solid orange;
-  margin: 0;
+  display: inline-block;
+
 }
 
 /* ProfileAbout.js STLYING*/
@@ -324,4 +350,15 @@ img {
 .carousel-container {
   border: 5px solid blue;
 
+}
+
+/*FOOTER styling*/
+
+footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
 }

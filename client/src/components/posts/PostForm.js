@@ -51,7 +51,7 @@ class PostForm extends Component {
 
     return (
       <div className="post-form mb-3">
-        <div className="card card-info">
+        <div className="form-card card-info">
           <div className="card-header bg-info text-white">Submit to  your Gallery</div>
           <div className="card-body">
             <form onSubmit={this.onSubmit}>
@@ -73,7 +73,7 @@ class PostForm extends Component {
                   error={errors.image} 
                 />
                 <TextAreaFieldGroup
-                  placeholder="Create a post"
+                  placeholder="Write a description"
                   name="text"
                   value={this.state.text}
                   onChange={this.onChange}
