@@ -37,61 +37,63 @@ class PostItem extends Component {
         <div className="post-image container">
           <img className="img" src={post.image} alt="" />
         </div>
-        <h1 className="post-title">{post.title}</h1>
-        <p className="post-user">Submitted by 
-          <a href="profile.html">
-            <img
-              className="profile-pic"
-              src={post.profilepic}
-              alt="#"
-            />
-          </a>
-        </p>
-        <hr />
-        <p className="post-text">{post.text}</p>
-        <div className="container">
-            {showActions ? (
-              <div className="buttons">
-                <button
-                  onClick={this.onLikeClick.bind(this, post._id)}
-                  type="button"
-                  className="btn btn-light mr-1"
-                >
-                  <i
-                    className={classnames('fas fa-thumbs-up', {
-                      'text-info': this.findUserLike(post.likes)
-                    })}
-                  />
-                  <span className="badge badge-light">{post.likes.length}</span>
-                  <span>LIKES</span>
-                </button>
-                <button
-                  onClick={this.onUnlikeClick.bind(this, post._id)}
-                  type="button"
-                  className="btn btn-light mr-1"
-                >
-                  <i className="text-secondary fas fa-thumbs-down" />
-                </button>
-                {post.user === auth.user.id ? (
-                  <div>
-                    <button
-                      onClick={this.onDeleteClick.bind(this, post._id)}
-                      type="button"
-                      className="btn btn-danger mr-1"
-                    >
-                      <i className="fas fa-times" />
-                    </button>
-                    <Link 
-                      to={`/posts/edit/${post._id}`}
-                      type="button"
-                      className="btn btn-warning mr-1">
-                        Edit
-                      </Link>
-                  </div>
-                ) : null}
-              </div>
-            ) : null}
-          </div>
+        <div className="post-details-container container">
+          <h1 className="post-title">{post.title}</h1>
+          <p className="post-user">Submitted by 
+            <a href="profile.html">
+              <img
+                className="profile-pic"
+                src={post.profilepic}
+                alt="#"
+              />
+            </a>
+          </p>
+          <hr />
+          <p className="post-text">{post.text}</p>
+          <div className="post-button-container container">
+              {showActions ? (
+                <div className="buttons container">
+                  <button
+                    onClick={this.onLikeClick.bind(this, post._id)}
+                    type="button"
+                    className="btn btn-light mr-1"
+                  >
+                    <i
+                      className={classnames('fas fa-thumbs-up', {
+                        'text-info': this.findUserLike(post.likes)
+                      })}
+                    />
+                    <span className="badge badge-light">{post.likes.length}</span>
+                    <span>LIKES</span>
+                  </button>
+                  <button
+                    onClick={this.onUnlikeClick.bind(this, post._id)}
+                    type="button"
+                    className="btn btn-light mr-1"
+                  >
+                    <i className="text-secondary fas fa-thumbs-down" />
+                  </button>
+                  {post.user === auth.user.id ? (
+                    <div className="user-buttons">
+                      <button
+                        onClick={this.onDeleteClick.bind(this, post._id)}
+                        type="button"
+                        className="btn btn-danger mr-1"
+                      >
+                        <i className="fas fa-times" />
+                      </button>
+                      <Link 
+                        to={`/posts/edit/${post._id}`}
+                        type="button"
+                        className="btn btn-warning mr-1">
+                          Edit
+                        </Link>
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
+            </div>
+        </div>
       </div>
     );
   }
