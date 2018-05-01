@@ -18,7 +18,8 @@ class EditCommentForm extends Component {
   }
 
   componentDidMount(){
-    // this.props.getComment(this.props.match.params.comment._id);
+    console.log(this.props);
+    this.props.getComment(this.props);
   }
 
 
@@ -27,7 +28,7 @@ class EditCommentForm extends Component {
     if (newProps.errors) {
       this.setState({ errors: newProps.errors });
     }
-    console.log(newProps);
+    // console.log(newProps);
     if(newProps.comment.comment){
       const comment = newProps.comment.comment;
       this.setState({

@@ -1,12 +1,12 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { editPost, getPost } from '../../actions/postActions';
-import isEmpty from '../../validation/is-empty';
+// import isEmpty from '../../validation/is-empty';
 import { Link } from 'react-router-dom';
 
-class EditPost extends PureComponent {
+class EditPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,6 +23,8 @@ class EditPost extends PureComponent {
 
   componentDidMount() {
     this.props.getPost(this.props.match.params.id);
+    console.log("this is the this.props")
+    console.log(this.props)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -31,9 +33,9 @@ class EditPost extends PureComponent {
     }
      if (nextProps.post.post) {
       const post = nextProps.post.post;
+
     // Set component fields state
       this.setState({
-        _id: post._id,
         title: post.title,
         image: post.image,
         text: post.text
@@ -49,6 +51,7 @@ class EditPost extends PureComponent {
     // const { user } = this.props.auth;
 
     const newPost = {
+      _id: this.state._id,
       title: this.state.title,
       image: this.state.image,
       text: this.state.text,
@@ -74,8 +77,8 @@ class EditPost extends PureComponent {
 
     return (
       <div className="post-form mb-3">
-        <Link to="/posts/:id" className="btn btn-light mb-3 float-left">
-          Back To Post
+        <Link to="/feed" className="btn btn-light mb-3 float-left">
+          Back To Feed
         </Link>
         <div className="form-card card-info">
           <div className="card-header bg-info text-white">Edit POST</div>

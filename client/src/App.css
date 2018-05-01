@@ -77,7 +77,7 @@ img {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.2),
     0 2px 2px rgba(0, 0, 0, 0.2);
   position: relative;
-  border: 2px solid blue;
+  /*border: 2px solid blue;*/
 }
 
 .image {
@@ -99,7 +99,7 @@ img {
   font-size: 10px;
   /*padding: 20px;*/
   text-align: center;
-  border: 5px solid green;
+  /*border: 5px solid green;*/
 }
 
 .post-container:hover .overlay {
@@ -115,7 +115,7 @@ img {
   width: 100%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
-  border: 5px solid red;
+  /*border: 5px solid red;*/
 }
 
 .text-container .title {
@@ -124,12 +124,12 @@ img {
   padding-left: 10%;
   text-align: left;
   display: inline-block;
-  border: 3px solid green;
+  /*border: 3px solid green;*/
   margin-top: 50%;
 }
 
 .text-container .user {
-  border: 5px solid purple;
+  /*border: 5px solid purple;*/
   width: 100%;
   padding-left: 10%;
   text-align: left;
@@ -151,7 +151,7 @@ img {
   font-size: 6px;
   display: inline-block;
   text-align: right;
-  border: 5px solid yellow;
+  /*border: 5px solid yellow;*/
 }
 
 .likes {
@@ -170,20 +170,20 @@ img {
 
 /* Post.js*/
 .post-content {
-  border: 1px solid green;
+  /*border: 1px solid green;*/
   height: auto;
 }
 
 .image-content {
-  border: 3px solid black;
+  /*border: 3px solid black;*/
 }
 
 .comment-form-content {
-  border: 3px solid blue;
+  /*border: 3px solid blue;*/
 }
 
 .comment-feed-content {
-  border: 3px solid aqua;
+  /*border: 3px solid aqua;*/
 }
 
 
@@ -191,7 +191,7 @@ img {
 .post-view {
   width: 100%;
   height: 100%;
-  border: 5px solid black;
+  /*border: 5px solid black;*/
 }
 
 
@@ -200,7 +200,7 @@ img {
 .single-post-container {
   width: 100%;
   height: 100%;
-  border: 5px solid pink;
+  /*border: 5px solid pink;*/
   position: relative;
   display: block;
   margin-top: 20px;
@@ -209,7 +209,7 @@ img {
 
 .post-image {
   width: 100%;
-  border: 3px solid purple;
+  /*border: 3px solid purple;*/
 }
 
 .post-title {
@@ -217,17 +217,17 @@ img {
 }
 
 .buttons {
-  border: 5px solid green;
+  /*border: 5px solid green;*/
   display: inline-block;
 }
 .user-buttons {
-  border: 1px solid orange;
+  /*border: 1px solid orange;*/
   display: inline-block;
   float: right;
 }
 
 .post-button-container {
-  border: 5px solid purple;
+  /*border: 5px solid purple;*/
 }
 /*the like buttons and other button aren't showing...?*/
 
@@ -235,7 +235,7 @@ img {
 /* Post.js STYLING*/
 
 .main-post-container {
-  border: 5px solid red;
+  /*border: 5px solid red;*/
   width: 90%;
 }
 
@@ -261,13 +261,13 @@ img {
 
 /*POST FORM styling*/
 .post-form {
-  border: 1px solid red;
+  /*border: 1px solid red;*/
 }
 
 .form-card {
   width: 50%;
   height: 800px;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   margin-left: auto;
   margin-right: auto;
 }
@@ -291,23 +291,23 @@ img {
   position: relative;
   display: block;
   margin-top: 50px;
-  border: 5px solid red;
+  /*border: 5px solid red;*/
   padding-top: 50px;
 }
 
 .card-style {
   width: 100%;
   height: 200px;
-  border: 1px solid yellow;
+ /* border: 1px solid yellow;*/
 }
 
 .card-body form {
   height: 50px;
-  border: 1px solid grey;
+  /*border: 1px solid grey;*/
 }
 
 .comment-header {
-  border: 1px solid blue;
+  /*border: 1px solid blue;*/
   height: 50px;
   font-size: 20px;
 }
@@ -319,7 +319,7 @@ img {
 /*COMMENT_ITEM.js STYLING*/
 
 .comment-container{
-  border: 5px solid green;
+  /*border: 5px solid green;*/
 }
 
 /*.comment-container:after {
@@ -338,7 +338,7 @@ img {
 }*/
 
 .user-link {
-  border: 3px solid purple;
+  /*border: 3px solid purple;*/
   display: inline-block;
   height: 100%;
   width: 100%;
@@ -351,7 +351,7 @@ img {
   width: 150px;
 }
 .user-comment {
-  border: 3px solid navy;
+  /*border: 3px solid navy;*/
   display: inline-block;
   /*position: relative;*/
   background: white;
@@ -388,36 +388,36 @@ img {
 /*Profile.js PAGE STYLING*/
 
 .return-profile-container {
-  border: 3px solid purple;
+  /*border: 3px solid purple;*/
   width: 100%;
 }
 
 .profile-container {
-  border: 3px solid black;
+  /*border: 3px solid black;*/
   width: 100%;
 }
 
 .back-button {
-  border: 3px solid green;
+  /*border: 3px solid green;*/
   height: 50px;
 }
 
 .about-container {
-  border: 3px solid yellow;
+  /*border: 3px solid yellow;*/
 }
 
 .about-row {
   width: 100%;
-  border: 1px solid green;
+  /*border: 1px solid green;*/
   margin: 0;
   padding: 0;
 }
 .profile-details {
-  border: 3px solid pink;
+  /*border: 3px solid pink;*/
   display: inline-block;
 }
 .user-posts-container {
-  border: 3px solid orange;
+  /*border: 3px solid orange;*/
   display: inline-block;
 
 }
@@ -425,7 +425,7 @@ img {
 /* ProfileAbout.js STLYING*/
 
 .profile-heading {
-  border: 3px solid red;
+  /*border: 3px solid red;*/
 }
 
 .latest-profiles-img {
@@ -448,7 +448,7 @@ img {
 /* ===== EXTRAS STYLING =====*/
 
 .carousel-container {
-  border: 5px solid blue;
+  /*border: 5px solid blue;*/
   padding-bottom: 35px;
   /*height: 600px;*/
 
@@ -458,7 +458,7 @@ img {
 /* Login.js Styling*/
 
 .login {
-  border: 5px solid purple;
+  /*border: 5px solid purple;*/
   height: 800px;
   padding-top: 35px;
 

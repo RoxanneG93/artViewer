@@ -139,7 +139,7 @@ router.post(
 // @desc    EDIT and UPDATE post
 // @access  Private
 router.put(
-  "/edit/:id",
+  "/:id/edit",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     // check validation
@@ -152,7 +152,9 @@ router.put(
     if (req.body.text) postFields.text = req.body.text;
     Post.findById(req.params.id).then(post => {
       // Check for post owner
+      console.log(post);
       if (post.user.toString() !== req.user.id) {
+        console.log("here");
         return res.status(401).json({ notauthorized: "User not authorized" });
       } else {
 
@@ -330,7 +332,7 @@ router.put(
   }
 );
 
-// @route   GET api/posts/:id
+// @route   GET api/posts/comment/:id/:comment_id
 // @desc    Get post by id
 // @access  Public
 router.get(
@@ -343,6 +345,7 @@ router.get(
       res.status(404).json({ nopostfound: "No post found with that ID" })
     );
 });
+
 
 
 

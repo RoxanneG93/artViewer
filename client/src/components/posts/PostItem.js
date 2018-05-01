@@ -29,7 +29,7 @@ class PostItem extends Component {
 
   render() {
     const { post, auth, showActions} = this.props;
-    console.log(this.props);
+    // console.log(this.props);
 
 
     return (
@@ -83,7 +83,7 @@ class PostItem extends Component {
                         <i className="fas fa-times" />
                       </button>
                       <Link 
-                        to={`/posts/edit/${post._id}`}
+                        to={`/posts/${post._id}/edit`}
                         type="button"
                         className="btn btn-warning mr-1">
                           Edit

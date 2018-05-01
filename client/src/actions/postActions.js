@@ -9,8 +9,7 @@ import {
   GET_POST,
   POST_LOADING,
   DELETE_POST,
-  EDIT_POST,
-  GET_CURRENT_POST
+  EDIT_POST
 } from './types';
 
 // Add Post
@@ -128,19 +127,23 @@ export const deletePost = id => dispatch => {
 
 
 // EDIT Post
-export const editPost = (id) => dispatch => {
-  axios.put(`/api/posts/edit/${id}`)
-        .then(res => 
+export const editPost = (data) => dispatch => {
+  console.log("below is the id log")
+    console.log(data);
+    // console.log("below is the data log")
+    // console.log(data);
+  axios.put(`/api/posts/${data._id}/edit`, data)
+        .then(res => {
           dispatch({
             type: EDIT_POST,
-            payload: res
+            payload: data
+          })
         })
-      )
-      .catch(err => 
-        dispatch({
-          type: GET_ERRORS,
-          payload: err.response.data
-      })
+        .catch(err => 
+          dispatch({
+            type: GET_ERRORS,
+            payload: err.response.data
+        })
     );
 };
 

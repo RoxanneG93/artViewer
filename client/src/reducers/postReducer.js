@@ -51,7 +51,7 @@ export default function(state = initialState, action) {
     case EDIT_POST:
       return {
         ...state, 
-        post: action.payload
+        post: [action.payload]
       }
     default:
       return state;
