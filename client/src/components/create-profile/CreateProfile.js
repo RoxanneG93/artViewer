@@ -119,91 +119,84 @@ class CreateProfile extends Component {
     ];
 
     return (
-      <div className="create-profile">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Create Your Profile</h1>
-              <p className="lead text-center">
-                Let's get some information to make your profile stand out
-              </p>
-              <small className="d-block pb-3">* = required fields</small>
-              <form onSubmit={this.onSubmit}>
-                <TextFieldGroup
-                  placeholder="* Profile Username"
-                  name="username"
-                  value={this.state.username}
-                  onChange={this.onChange}
-                  error={errors.username}
-                  info="A unique username for your profile URL. Your full name, company name, nickname"
-                />
-                <SelectListGroup
-                  placeholder="Occupation"
-                  name="occupation"
-                  value={this.state.occupation}
-                  onChange={this.onChange}
-                  options={options}
-                  error={errors.occupation}
-                  info="Give us an idea of where you are at in your career"
-                />
-                <TextFieldGroup
-                  placeholder="Website"
-                  name="website"
-                  value={this.state.website}
-                  onChange={this.onChange}
-                  error={errors.website}
-                  info="Could be your own website or a company one"
-                />
-                <TextFieldGroup
-                  placeholder="Location"
-                  name="location"
-                  value={this.state.location}
-                  onChange={this.onChange}
-                  error={errors.location}
-                  info="City or city & state suggested (eg. Boston, MA)"
-                />
-                <TextFieldGroup
-                  placeholder="* Interests"
-                  name="interests"
-                  value={this.state.interests}
-                  onChange={this.onChange}
-                  error={errors.interests}
-                  info="Please use comma separated values (eg.
-                    movies,music,tv shows,artists"
-                />
-                <TextAreaFieldGroup
-                  placeholder="Short Bio"
-                  name="bio"
-                  value={this.state.bio}
-                  onChange={this.onChange}
-                  error={errors.bio}
-                  info="Tell us a little about yourself"
-                />
-
-                <div className="mb-3">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      this.setState(prevState => ({
-                        displaySocialInputs: !prevState.displaySocialInputs
-                      }));
-                    }}
-                    className="btn btn-light"
-                  >
-                    Add Social Network Links
-                  </button>
-                  <span className="text-muted">Optional</span>
-                </div>
-                {socialInputs}
-                <input
-                  type="submit"
-                  value="Submit"
-                  className="btn btn-info btn-block mt-4"
-                />
-              </form>
+      <div className="create-profile-wrapper container">
+        <h1>Create Your Profile</h1>
+        <h4>
+          Let's get some information to make your profile stand out
+        </h4>
+        <p className="d-block pb-3">* = required fields</p>
+          <form  className="create-profile-form" onSubmit={this.onSubmit}>
+            <TextFieldGroup
+              placeholder="* Profile Username"
+              name="username"
+              value={this.state.username}
+              onChange={this.onChange}
+              error={errors.username}
+              info="A unique username for your profile URL. Your full name, company name, nickname"
+            />
+            <SelectListGroup
+              placeholder="Occupation"
+              name="occupation"
+              value={this.state.occupation}
+              onChange={this.onChange}
+              options={options}
+              error={errors.occupation}
+              info="Give us an idea of where you are at in your career"
+            />
+            <TextFieldGroup
+              placeholder="Website"
+              name="website"
+              value={this.state.website}
+              onChange={this.onChange}
+              error={errors.website}
+              info="Could be your own website or a company one"
+            />
+            <TextFieldGroup
+              placeholder="Location"
+              name="location"
+              value={this.state.location}
+              onChange={this.onChange}
+              error={errors.location}
+              info="City or city & state suggested (eg. Boston, MA)"
+            />
+            <TextFieldGroup
+              placeholder="* Interests"
+              name="interests"
+              value={this.state.interests}
+              onChange={this.onChange}
+              error={errors.interests}
+              info="Please use comma separated values (eg.
+                movies,music,tv shows,artists"
+            />
+            <TextAreaFieldGroup
+              placeholder="Short Bio"
+              name="bio"
+              value={this.state.bio}
+              onChange={this.onChange}
+              error={errors.bio}
+              info="Tell us a little about yourself"
+            />
+            <div className="mb-3">
+              <button
+                type="button"
+                onClick={() => {
+                  this.setState(prevState => ({
+                    displaySocialInputs: !prevState.displaySocialInputs
+                  }));
+                }}
+                className="btn btn-light"
+              >
+                Add Social Network Links
+              </button>
+              <span className="text-muted">Optional</span>
             </div>
-          </div>
-        </div>
+            {socialInputs}
+            <input
+              type="submit"
+              value="Submit"
+              className="button-style btn btn-block mt-4"
+            />
+          </form>
       </div>
     );
   }

@@ -2,6 +2,13 @@ img {
   width: 100%;
 }
 
+.App {
+  background: #ECE9E6;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
 .landing {
   position: relative;
   background: url('./images/abstract-digital-art.jpg') no-repeat;
@@ -168,6 +175,18 @@ img {
   font-weight: bold;
 }
 
+/* ========== DASHBOARD styling ===========*/
+.dashboard-content h1 {
+  font-size: 35px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.dashboard-content p {
+  font-size: 25px;
+  padding-bottom: 20px;
+}
+
 /* Post.js*/
 .post-content {
   /*border: 1px solid green;*/
@@ -262,12 +281,36 @@ img {
 /*POST FORM styling*/
 .post-form {
   /*border: 1px solid red;*/
+  height: 800px;
+  width: 700px;
+}
+
+.post-form-button{
+  width: 100px;
+  height: 50px;
+
+}
+
+.card-header {
+  background: #24C6DC;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #514A9D, #24C6DC);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #514A9D, #24C6DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.card-body {
+  height: 500px;
+  
+background: #C9D6FF;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 .form-card {
   width: 50%;
-  height: 800px;
-  /*border: 1px solid black;*/
+  height: 100%;
+  border: 1px solid black;
   margin-left: auto;
   margin-right: auto;
 }
@@ -454,6 +497,27 @@ img {
 
 }
 
+/* ====== BUTTON styling accross app ====== */
+
+.button-style {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  height: 60px;
+  font-size: 25px;
+  border: 2px solid #bb3bf7;
+  background-color: white;
+  text-decoration: none;
+
+
+}
+
+.button-style:hover {
+  background: #ff00cc;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #333399, #ff00cc);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #333399, #ff00cc); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+}
+
 
 /* Login.js Styling*/
 
@@ -474,10 +538,75 @@ img {
 }
 
 .login-container form {
-  width: 300px;
+  width: 500px;
   margin-left: auto;
   margin-right: auto;
 }
+
+/* REGISTER.js styling*/
+.register-container {
+  /*border: 1px solid purple;*/
+  height: 800px;
+/*  margin-left: auto;
+  margin-right: auto;*/
+}
+
+.register-container h1 {
+  font-size: 5em;
+  padding: 20px;
+}
+
+.register-container h4 {
+  font-size: 2em;
+  padding: 15px;
+}
+
+.register-container p {
+  font-size: 1.5em;
+}
+
+.register-form {
+  /*border: 1px solid pink;*/
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.register-form input {
+  margin-left: ;
+  margin-right: ;
+}
+
+/* ======= CREATE-PROFILE styling =====*/
+.create-profile-wrapper {
+  /*border: 1px solid black;*/
+  height: 100%;
+}
+
+.create-profile-wrapper h1 {
+  font-size: 4em;
+  padding: 20px;
+  text-align: center;
+}
+.create-profile-wrapper h4 {
+  font-size: 2em;
+  padding: 10px;
+  text-align: center;
+}
+
+.create-profile-wrapper p {
+  font-size: 20px;
+  text-align: center;
+}
+
+.create-profile-form {
+  /*border: 1px solid pink;*/
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 20px;
+}
+
 
 /*FOOTER styling*/
 

@@ -7,14 +7,6 @@ import { Link } from "react-router-dom";
 
 class MainPostView extends Component {
 
-  // onLikeClick(id) {
-  //   this.props.addLike(id);
-  // }
-
-  // onUnlikeClick(id) {
-  //   this.props.removeLike(id);
-  // }
-
   findUserLike(likes) {
     const { auth } = this.props;
     if (likes.filter(like => like.user === auth.user.id).length > 0) {
@@ -26,7 +18,7 @@ class MainPostView extends Component {
 
   render() {
     const { post, auth, showActions } = this.props;
-    // console.log(this.props);
+    console.log(this.props);
 
     return (
       
@@ -67,8 +59,6 @@ MainPostView.defaultProps = {
 };
 
 MainPostView.propTypes = {
-  // addLike: PropTypes.func.isRequired,
-  // removeLike: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };

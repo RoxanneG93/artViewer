@@ -20,6 +20,7 @@ class Dashboard extends Component {
   render() {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
+    console.log(this.props);
 
     let dashboardContent;
 
@@ -32,7 +33,7 @@ class Dashboard extends Component {
         dashboardContent = (
           <div>
             <p className="lead text-muted">
-              Welcome <Link to={`/profile/username/${profile.username}`}>{user.name}</Link>
+              Welcome <Link to={`/profile/username/${profile.username}`}>{profile.username}</Link>
             </p>
             <ProfileActions />
             <div style={{ marginBottom: '60px' }} />
@@ -47,10 +48,10 @@ class Dashboard extends Component {
       } else {
         // User is logged in but has no profile
         dashboardContent = (
-          <div>
-            <p className="lead text-muted">Welcome {user.name}</p>
-            <p>You have not yet setup a profile, please add some info</p>
-            <Link to="/create-profile" className="btn btn-lg btn-info">
+          <div className="dashboard-content">
+            <h1 className="lead text-muted">Welcome <em>{user.name}</em></h1>
+            <p>You have not yet setup a profile, please add some info.</p>
+            <Link to="/create-profile" className="button-style btn btn-lg">
               Create Profile
             </Link>
           </div>

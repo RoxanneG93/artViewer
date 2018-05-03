@@ -7,6 +7,7 @@ import defaultImage from '../../img/profiledefault.png';
 class ProfileDetails extends Component {
   render() {
     const { profile, user } = this.props;
+    console.log(this.props);
   
     // Get first name
     const firstName = profile.user.name.trim().split(' ')[0];
@@ -19,18 +20,7 @@ class ProfileDetails extends Component {
     ));
 
     return (
-      <div className="card text-center">
-        <div className="card-header">
-          <ul className="nav nav-tabs card-header-tabs">
-            <li className="nav-item">
-              <a clasName="nav-link active" href="#">Profile</a>
-            </li>
-            <li className="nav-item">
-              <a clasName="nav-link" href="#">Gallery</a>
-            </li>
-          </ul>
-        </div>
-        <div className="card-body" >
+      <div className="profile-details-wrapper container text-center">
             <img
               className="card-img-top"
               src={profile.user.profilepic}
@@ -110,7 +100,6 @@ class ProfileDetails extends Component {
                   {interests}
                 </div>
               </div>
-            </div>
         </div>
     );
   }

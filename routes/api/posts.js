@@ -158,7 +158,6 @@ router.put(
         return res.status(401).json({ notauthorized: "User not authorized" });
       } else {
 
-        console.log(postFields);
         // UPDATE
         Post.findOneAndUpdate(
           { _id: req.params.id },
