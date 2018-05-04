@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { getCurrentProfile, deleteAccount } from '../../actions/profileActions';
-import Spinner from '../common/Spinner';
-import ProfileActions from './ProfileActions';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
+import Spinner from "../common/Spinner";
+import ProfileActions from "./ProfileActions";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -26,13 +26,15 @@ class Dashboard extends Component {
     } else {
       // Check if logged in user has profile data
       if (Object.keys(profile).length > 0) {
+        console.log("Profile", profile);
         dashboardContent = (
           <div>
             <p className="lead text-muted">
-              Welcome <Link to={`/profile/${profile.username}`}>{user.name}</Link>
+              Welcome{" "}
+              <Link to={`/profile/${profile.username}`}>{user.name}</Link>
             </p>
             <ProfileActions />
-            <div style={{ marginBottom: '60px' }} />
+            <div style={{ marginBottom: "60px" }} />
             <button
               onClick={this.onDeleteClick.bind(this)}
               className="btn btn-danger"

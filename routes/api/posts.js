@@ -39,7 +39,6 @@ router.get("/:id", (req, res) => {
     );
 });
 
-
 // @route   GET api/posts/user_id
 // @desc    Get ALL posts by user's id
 // @access  Public
@@ -124,17 +123,16 @@ router.post(
 // @desc    Get post by id in for the dit form
 // @access  Private
 router.get(
-  '/:id/edit',
-  passport.authenticate('jwt', { session: false }),
+  "/:id/edit",
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Post.findById(req.params.id)
       .then(post => res.json(post))
       .catch(err =>
         res.status(404).json({ nopostfound: "No post found with that ID" })
-    );
+      );
   }
 );
-
 
 // @route   EDIT api/posts/:id/edit
 // @desc    EDIT and UPDATE post
@@ -322,10 +320,6 @@ router.put(
         });
 
         post.save().then(post => res.json(post));
-<<<<<<< HEAD
-=======
-
->>>>>>> 9fd2fb153af163751d91dbd554e6a6c34054b433
       })
       .catch(err => res.status(404).json({ postnotfound: "No post found" }));
   }
