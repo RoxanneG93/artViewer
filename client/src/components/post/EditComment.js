@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import { addComment } from '../../actions/postActions';
+import { editComment, getComment } from '../../actions/postActions';
 
-class CommentForm extends Component {
+
+class EditCommentForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,9 +17,23 @@ class CommentForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount(){
+    console.log(this.props);
+    this.props.getComment(this.props);
+  }
+
+
+
   componentWillReceiveProps(newProps) {
     if (newProps.errors) {
       this.setState({ errors: newProps.errors });
+    }
+    // console.log(newProps);
+    if(newProps.comment.comment){
+      const comment = newProps.comment.comment;
+      this.setState({
+        text: comment.text
+      });
     }
   }
 
@@ -28,13 +43,11 @@ class CommentForm extends Component {
     const { user } = this.props.auth;
     const { postId } = this.props;
 
-    const newComment = {
-      text: this.state.text,
-      name: user.name,
-      profielpic: user.profielpic
+    const newText = {
+      text: this.state.text
     };
 
-    this.props.addComment(postId, newComment);
+    this.props.editComment(newText);
     this.setState({ text: '' });
   }
 
@@ -46,7 +59,7 @@ class CommentForm extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="post-form mb-3">
+      <div className="comment-form container">
         <div className="card card-info">
           <div className="card-header bg-info text-white">
             Make a comment...
@@ -73,10 +86,12 @@ class CommentForm extends Component {
   }
 }
 
-CommentForm.propTypes = {
-  addPost: PropTypes.func.isRequired,
+EditCommentForm.propTypes = {
+  // addPost: PropTypes.func.isRequired,
+  editComment: PropTypes.func.isRequired,
+  getComment: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  postId: PropTypes.string.isRequired,
+  // postId: PropTypes.string.isRequired,
   errors: PropTypes.object.isRequired
 };
 
@@ -85,4 +100,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addComment })(CommentForm);
+export default connect(mapStateToProps, { editComment, getComment })( EditCommentForm);

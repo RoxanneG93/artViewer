@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import { addPost, getCurrentPost } from '../../actions/postActions';
-import isEmpty from '../../validation/is-empty';
+import { editPost, getPost } from '../../actions/postActions';
+// import isEmpty from '../../validation/is-empty';
+import { Link } from 'react-router-dom';
 
 class EditPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      _id: this.props.match.params.id,
       title: '',
       text: '',
       image: '',
@@ -20,54 +22,65 @@ class EditPost extends Component {
   }
 
   componentDidMount() {
-    this.props.getCurrentPost();
-    console.log(this.props);
+    this.props.getPost(this.props.match.params.id);
+    console.log("this is the this.props")
+    console.log(this.props)
   }
-
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
-
-    if(nextProps.post.post){
+     if (nextProps.post.post) {
       const post = nextProps.post.post;
-      // if post feild 
-      post.title = !isEmpty(post.title) ? post.title : '';
-      post.image = !isEmpty(post.image) ? post.image : '';
-      post.text = !isEmpty(post.text) ? post.text : '';
 
-      // set component feidls state
+    // Set component fields state
       this.setState({
         title: post.title,
-        text: post.text,
-        image: post.image
+        image: post.image,
+        text: post.text
       });
     }
+    console.log("below is nextProps");
+    console.log(nextProps);
   }
 
   onSubmit(e) {
     e.preventDefault();
 
-    const updatePost = {
+    // const { user } = this.props.auth;
+
+    const newPost = {
+      _id: this.state._id,
       title: this.state.title,
       image: this.state.image,
-      text: this.state.text
+      text: this.state.text,
     };
 
-    this.props.addPost(updatePost);
+    this.props.editPost(newPost);
+    console.log("below is newPost");
+    console.log(newPost);
+    // this.setState({ title: '', image: '', text: ''});
+    // this.props.history.push('/feed');
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+
   render() {
+    // const {post} = this.props.post;
+    // console.log(this.props.post);
     const { errors } = this.state;
+    // console.log(this.props);
 
     return (
       <div className="post-form mb-3">
-        <div className="card card-info">
+        <Link to="/feed" className="btn btn-light mb-3 float-left">
+          Back To Feed
+        </Link>
+        <div className="form-card card-info">
           <div className="card-header bg-info text-white">Edit POST</div>
           <div className="card-body">
             <form onSubmit={this.onSubmit}>
@@ -95,17 +108,13 @@ class EditPost extends Component {
                   onChange={this.onChange}
                   error={errors.text}
                 />
-
-
-
               </div>
-                    <button
-                      
-                      type="button"
-                      className="btn btn-warning mr-1"
-                    >
-                    Submit
-                    </button>
+              <button
+                type="submit"
+                className="btn btn-warning mr-1"
+              >
+              Submit
+              </button>
             </form>
           </div>
         </div>
@@ -115,9 +124,10 @@ class EditPost extends Component {
 }
 
 EditPost.propTypes = {
-  addPost: PropTypes.func.isRequired,
-  getCurrentPost: PropTypes.func.isRequired,
-  // editPost: PropTypes.func.isRequired,
+  // addPost: PropTypes.func.isRequired,
+  getPost: PropTypes.func.isRequired,
+  editPost: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -128,4 +138,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addPost, getCurrentPost })(EditPost);
+export default connect(mapStateToProps, { editPost, getPost })(EditPost);

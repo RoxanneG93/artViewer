@@ -56,57 +56,56 @@ class Register extends Component {
 
     return (
       <div className="register">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Sign Up</h1>
-              <p className="lead text-center">
-                Create your Art-viewer account
-              </p>
-              <form noValidate onSubmit={this.onSubmit}>
-                <TextFieldGroup
-                  placeholder="Name"
-                  name="name"
-                  value={this.state.name}
-                  onChange={this.onChange}
-                  error={errors.name}
-                />
-                <TextFieldGroup
-                  placeholder="Email"
-                  name="email"
-                  type="email"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                  error={errors.email}
-                />
-                <TextFieldGroup
-                  placeholder="Profile Picture"
-                  name="profilepic"
-                  type="text"
-                  value={this.state.profilepic}
-                  onChange={this.onChange}
-                  error={errors.profilepic}
-                />
-                <TextFieldGroup
-                  placeholder="Password"
-                  name="password"
-                  type="password"
-                  value={this.state.password}
-                  onChange={this.onChange}
-                  error={errors.password}
-                />
-                <TextFieldGroup
-                  placeholder="Confirm Password"
-                  name="password2"
-                  type="password"
-                  value={this.state.password2}
-                  onChange={this.onChange}
-                  error={errors.password2}
-                />
-                <input type="submit" className="btn btn-info btn-block mt-4" />
-              </form>
-            </div>
-          </div>
+        <div className="register-container container">
+          <h1 className="display-4 text-center">Sign Up</h1>
+          <h4 className="lead text-center">
+            Create your <strong><em>ArtFolio</em></strong> account.
+          </h4>
+          <p className="lead text-center">
+            ***All fields required.
+          </p>
+          <form className="register-form" noValidate onSubmit={this.onSubmit}>
+            <TextFieldGroup
+              placeholder="Name"
+              name="name"
+              value={this.state.name}
+              onChange={this.onChange}
+              error={errors.name}
+            />
+            <TextFieldGroup
+              placeholder="Email"
+              name="email"
+              type="email"
+              value={this.state.email}
+              onChange={this.onChange}
+              error={errors.email}
+            />
+            <TextFieldGroup
+              placeholder="Profile Picture"
+              name="profilepic"
+              type="text"
+              value={this.state.profilepic}
+              onChange={this.onChange}
+              error={errors.profilepic}
+            />
+            <TextFieldGroup
+              placeholder="Password"
+              name="password"
+              type="password"
+              value={this.state.password}
+              onChange={this.onChange}
+              error={errors.password}
+            />
+            <TextFieldGroup
+              placeholder="Confirm Password"
+              name="password2"
+              type="password"
+              value={this.state.password2}
+              onChange={this.onChange}
+              error={errors.password2}
+            />
+            <input type="submit" className="button-style btn btn-block mt-4" />
+          </form>
         </div>
       </div>
     );

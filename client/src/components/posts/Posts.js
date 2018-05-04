@@ -26,7 +26,8 @@ class Posts extends Component {
       <div className="main-post-container container-fluid">
         <Carousel />
         <hr />
-        <h1 className="home-text">Check out creations from fellow Artists below.</h1>
+        <h1 className="home-text"
+        >Check out creations from fellow Artists below.</h1>
         {postContent}
       </div>
     );

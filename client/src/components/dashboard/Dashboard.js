@@ -6,6 +6,8 @@ import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
 import Spinner from "../common/Spinner";
 import ProfileActions from "./ProfileActions";
 
+import Profile from '../profile/Profile';
+
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
@@ -18,8 +20,10 @@ class Dashboard extends Component {
   render() {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
+    console.log(this.props);
 
     let dashboardContent;
+
 
     if (profile === null || loading) {
       dashboardContent = <Spinner />;
@@ -30,8 +34,12 @@ class Dashboard extends Component {
         dashboardContent = (
           <div>
             <p className="lead text-muted">
+<<<<<<< HEAD
               Welcome{" "}
               <Link to={`/profile/${profile.username}`}>{user.name}</Link>
+=======
+              Welcome <Link to={`/profile/username/${profile.username}`}>{profile.username}</Link>
+>>>>>>> fc7ed499805394211adc2211f61ccdaf16690a54
             </p>
             <ProfileActions />
             <div style={{ marginBottom: "60px" }} />
@@ -46,10 +54,10 @@ class Dashboard extends Component {
       } else {
         // User is logged in but has no profile
         dashboardContent = (
-          <div>
-            <p className="lead text-muted">Welcome {user.name}</p>
-            <p>You have not yet setup a profile, please add some info</p>
-            <Link to="/create-profile" className="btn btn-lg btn-info">
+          <div className="dashboard-content">
+            <h1 className="lead text-muted">Welcome <em>{user.name}</em></h1>
+            <p>You have not yet setup a profile, please add some info.</p>
+            <Link to="/create-profile" className="button-style btn btn-lg">
               Create Profile
             </Link>
           </div>

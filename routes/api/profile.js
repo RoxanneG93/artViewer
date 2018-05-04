@@ -61,7 +61,7 @@ router.get('/all', (req, res) => {
 // @desc    Get profile by username
 // @access  Public
 
-router.get('/:username', (req, res) => {
+router.get('/username/:username', (req, res) => {
   const errors = {};
 
   Profile.findOne({ username: req.params.username })
@@ -84,7 +84,7 @@ router.get('/:username', (req, res) => {
 router.get('/user/:user_id', (req, res) => {
   const errors = {};
 
-  Profile.findOne({ user: req.params.user_id })
+  Profile.findOne({ user: req.params.user_id})
     .populate('user', ['name', 'profilepic'])
     .then(profile => {
       if (!profile) {

@@ -2,9 +2,16 @@ img {
   width: 100%;
 }
 
+.App {
+  background: #ECE9E6;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
 .landing {
   position: relative;
-  /*background: url('./img/showcase.jpg') no-repeat;*/
+  background: url('./images/abstract-digital-art.jpg') no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -17,12 +24,34 @@ img {
 }
 
 .dark-overlay {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 10, 0.6);
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.landing-container {
+  height: 500px;
+}
+
+.brand-container {
+  border: 1px solid white;
+  height: 100%;
+  width: 100%;
+  padding-top: 8%;
+  border-radius: 25px;
+
+}
+
+.brand-container img {
+  width: 55%;
+  padding: 20px;
+}
+
+.brand-container h1 {
+  font-size: 2em;
 }
 
 .card-form {
@@ -32,8 +61,16 @@ img {
 
 /* ======= NAVBAR STYLING ========*/
 
-.navbar-nav {
+.navbar {
+    background: #141E30;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+
+}
+
+.navbar-brand img {
+  width: 100px;
 }
 /*POST STYLING*/
 .post-container {
@@ -47,7 +84,7 @@ img {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.2),
     0 2px 2px rgba(0, 0, 0, 0.2);
   position: relative;
-  border: 2px solid blue;
+  /*border: 2px solid blue;*/
 }
 
 .image {
@@ -69,7 +106,7 @@ img {
   font-size: 10px;
   /*padding: 20px;*/
   text-align: center;
-  border: 5px solid green;
+  /*border: 5px solid green;*/
 }
 
 .post-container:hover .overlay {
@@ -85,7 +122,7 @@ img {
   width: 100%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
-  border: 5px solid red;
+  /*border: 5px solid red;*/
 }
 
 .text-container .title {
@@ -94,12 +131,12 @@ img {
   padding-left: 10%;
   text-align: left;
   display: inline-block;
-  border: 3px solid green;
+  /*border: 3px solid green;*/
   margin-top: 50%;
 }
 
 .text-container .user {
-  border: 5px solid purple;
+  /*border: 5px solid purple;*/
   width: 100%;
   padding-left: 10%;
   text-align: left;
@@ -121,7 +158,7 @@ img {
   font-size: 6px;
   display: inline-block;
   text-align: right;
-  border: 5px solid yellow;
+  /*border: 5px solid yellow;*/
 }
 
 .likes {
@@ -138,21 +175,51 @@ img {
   font-weight: bold;
 }
 
+/* ========== DASHBOARD styling ===========*/
+.dashboard-content h1 {
+  font-size: 35px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.dashboard-content p {
+  font-size: 25px;
+  padding-bottom: 20px;
+}
+
+/* Post.js*/
+.post-content {
+  /*border: 1px solid green;*/
+  height: auto;
+}
+
+.image-content {
+  /*border: 3px solid black;*/
+}
+
+.comment-form-content {
+  /*border: 3px solid blue;*/
+}
+
+.comment-feed-content {
+  /*border: 3px solid aqua;*/
+}
+
 
 /*SINGLE POST.js PAGE STYLING*/
 .post-view {
   width: 100%;
-  height: 1500px;
-  border: 5px solid black;
+  height: 100%;
+  /*border: 5px solid black;*/
 }
 
 
 /* POST-ITEM.js STYLING*/
 
 .single-post-container {
-  width: 800px;
-  height: 800px;
-  border: 5px solid pink;
+  width: 100%;
+  height: 100%;
+  /*border: 5px solid pink;*/
   position: relative;
   display: block;
   margin-top: 20px;
@@ -161,7 +228,7 @@ img {
 
 .post-image {
   width: 100%;
-  border: 3px solid purple;
+  /*border: 3px solid purple;*/
 }
 
 .post-title {
@@ -169,7 +236,17 @@ img {
 }
 
 .buttons {
-  border: 5px solid green;
+  /*border: 5px solid green;*/
+  display: inline-block;
+}
+.user-buttons {
+  /*border: 1px solid orange;*/
+  display: inline-block;
+  float: right;
+}
+
+.post-button-container {
+  /*border: 5px solid purple;*/
 }
 /*the like buttons and other button aren't showing...?*/
 
@@ -177,16 +254,75 @@ img {
 /* Post.js STYLING*/
 
 .main-post-container {
-  border: 5px solid red;
+  /*border: 5px solid red;*/
   width: 90%;
 }
 
+.main-post-container hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0));
+}
+
+.main-post-container h1 {
+  padding-top: 30px;
+  font-size: 3em;
+  padding-bottom: 30px;
+
+}
 /* Posts.js STYlLING*/
 .home-text {
   text-align: center;
-  font-size: 35px;
+  font-size: 25px;
   margin: 10px;
 }
+
+
+/*POST FORM styling*/
+.post-form {
+  /*border: 1px solid red;*/
+  height: 800px;
+  width: 700px;
+}
+
+.post-form-button{
+  width: 100px;
+  height: 50px;
+
+}
+
+.card-header {
+  background: #24C6DC;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #514A9D, #24C6DC);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #514A9D, #24C6DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.card-body {
+  height: 500px;
+  
+background: #C9D6FF;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.form-card {
+  width: 50%;
+  height: 100%;
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card-header {
+  font-size: 25px;
+}
+
+/*EDIT POST styling*/
+
+
+
 
 /* ======== THE COMMENT PAGES STYLING ========== */
 
@@ -197,18 +333,36 @@ img {
   width: 100%;
   position: relative;
   display: block;
-  margin: auto;
-  border: 5px solid red;
+  margin-top: 50px;
+  /*border: 5px solid red;*/
+  padding-top: 50px;
 }
 
+.card-style {
+  width: 100%;
+  height: 200px;
+ /* border: 1px solid yellow;*/
+}
+
+.card-body form {
+  height: 50px;
+  /*border: 1px solid grey;*/
+}
+
+.comment-header {
+  /*border: 1px solid blue;*/
+  height: 50px;
+  font-size: 20px;
+}
+
+.comment-btn {
+  margin-bottom: 50px;
+}
 
 /*COMMENT_ITEM.js STYLING*/
 
 .comment-container{
-/*  position: relative;
-  background: white;
-  border-radius: .4em;
-  border: 5px solid orange;*/
+  /*border: 5px solid green;*/
 }
 
 /*.comment-container:after {
@@ -227,18 +381,26 @@ img {
 }*/
 
 .user-link {
-  border: 3px solid purple;
+  /*border: 3px solid purple;*/
   display: inline-block;
+  height: 100%;
+  width: 100%;
+  padding: 10px;
 }
 
-
+.user-link a {
+  /*margin-left: 20%;*/
+  display: block;
+  width: 150px;
+}
 .user-comment {
-  border: 3px solid navy;
+  /*border: 3px solid navy;*/
   display: inline-block;
-  position: relative;
+  /*position: relative;*/
   background: white;
   border-radius: .4em;
   border: 5px solid orange;
+  padding: 8px;
 }
 
 .user-comment:after {
@@ -269,37 +431,44 @@ img {
 /*Profile.js PAGE STYLING*/
 
 .return-profile-container {
-  border: 3px solid purple;
+  /*border: 3px solid purple;*/
   width: 100%;
 }
 
 .profile-container {
-  border: 3px solid black;
+  /*border: 3px solid black;*/
   width: 100%;
 }
 
 .back-button {
-  border: 3px solid green;
+  /*border: 3px solid green;*/
   height: 50px;
 }
 
 .about-container {
-  border: 3px solid yellow;
+  /*border: 3px solid yellow;*/
 }
 
-.profile-details {
-  border: 3px solid pink;
+.about-row {
+  width: 100%;
+  /*border: 1px solid green;*/
   margin: 0;
+  padding: 0;
+}
+.profile-details {
+  /*border: 3px solid pink;*/
+  display: inline-block;
 }
 .user-posts-container {
-  border: 3px solid orange;
-  margin: 0;
+  /*border: 3px solid orange;*/
+  display: inline-block;
+
 }
 
 /* ProfileAbout.js STLYING*/
 
 .profile-heading {
-  border: 3px solid red;
+  /*border: 3px solid red;*/
 }
 
 .latest-profiles-img {
@@ -322,6 +491,135 @@ img {
 /* ===== EXTRAS STYLING =====*/
 
 .carousel-container {
-  border: 5px solid blue;
+  /*border: 5px solid blue;*/
+  padding-bottom: 35px;
+  /*height: 600px;*/
 
 }
+
+/* ====== BUTTON styling accross app ====== */
+
+.button-style {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  height: 60px;
+  font-size: 25px;
+  border: 2px solid #bb3bf7;
+  background-color: white;
+  text-decoration: none;
+
+
+}
+
+.button-style:hover {
+  background: #ff00cc;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #333399, #ff00cc);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #333399, #ff00cc); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+}
+
+
+/* Login.js Styling*/
+
+.login {
+  /*border: 5px solid purple;*/
+  height: 800px;
+  padding-top: 35px;
+
+}
+
+.login-container h1 {
+  font-size: 5em;
+}
+
+.login-container p {
+  font-size: 2em;
+  padding: 25px;
+}
+
+.login-container form {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* REGISTER.js styling*/
+.register-container {
+  /*border: 1px solid purple;*/
+  height: 800px;
+/*  margin-left: auto;
+  margin-right: auto;*/
+}
+
+.register-container h1 {
+  font-size: 5em;
+  padding: 20px;
+}
+
+.register-container h4 {
+  font-size: 2em;
+  padding: 15px;
+}
+
+.register-container p {
+  font-size: 1.5em;
+}
+
+.register-form {
+  /*border: 1px solid pink;*/
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.register-form input {
+  margin-left: ;
+  margin-right: ;
+}
+
+/* ======= CREATE-PROFILE styling =====*/
+.create-profile-wrapper {
+  /*border: 1px solid black;*/
+  height: 100%;
+}
+
+.create-profile-wrapper h1 {
+  font-size: 4em;
+  padding: 20px;
+  text-align: center;
+}
+.create-profile-wrapper h4 {
+  font-size: 2em;
+  padding: 10px;
+  text-align: center;
+}
+
+.create-profile-wrapper p {
+  font-size: 20px;
+  text-align: center;
+}
+
+.create-profile-form {
+  /*border: 1px solid pink;*/
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 20px;
+}
+
+
+/*FOOTER styling*/
+
+footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    background: #141E30;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(left, #243B55, #141E30);
+    background: -o-linear-gradient(left, #243B55, #141E30);
+    background: linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+} 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import ArtFolio from '../../images/ArtFolio2.png';
 
 class Landing extends Component {
   componentDidMount() {
@@ -14,15 +15,12 @@ class Landing extends Component {
     return (
       <div className="landing">
         <div className="dark-overlay landing-inner text-light">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">Art-Viewer</h1>
-                <h4>Yes we still need to come up with a name lol...</h4>
-                <p className="lead">
-                  {' '}
+          <div className="landing-container container">
+              <div className="brand-container col-md-12 text-center">
+                <img src={ArtFolio} alt="ArtFolio" />
+                <h1>
                   Create profile/portfolio, share your work and share the love!
-                </p>
+                </h1>
                 <hr />
                 <Link to="/register" className="btn btn-lg btn-info mr-2">
                   Sign Up
@@ -31,7 +29,6 @@ class Landing extends Component {
                   Login
                 </Link>
               </div>
-            </div>
           </div>
         </div>
       </div>

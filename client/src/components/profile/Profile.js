@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import ProfileAbout from './ProfileAbout';
-import ProfileHeader from './ProfileHeader';
+import ProfileDetails from './ProfileDetails';
 import Spinner from '../common/Spinner';
 import { getProfileByUsername } from '../../actions/profileActions';
 // import UserPosts from '../posts/UserPosts';
 
 class Profile extends Component {
+
   componentDidMount() {
-    if (this.props.match.params.username) {
+   if(this.props.match.params.handle){
       this.props.getProfileByUsername(this.props.match.params.username);
+      console.log(this.props);
     }
+ 
   }
 
   componentWillReceiveProps(nextProps) {
@@ -36,13 +38,13 @@ class Profile extends Component {
               </Link>
             </div>
             <div className="about-container container-fluid">
-              <div className="row">
+              <div className="about-row row">
                 <div className="profile-details col-md-2">
-                  <ProfileAbout />
-                  <ProfileHeader />
+                 <ProfileDetails profile={profile} />
                 </div>
-                <div className="user-posts-container col-md-2">
+                <div className="user-posts-container col-md-10">
                   <h1>User's Posts would go here</h1>
+                  <Link to={`/user-posts`}>GALLERY</Link>
                 </div>
               </div>
             </div>

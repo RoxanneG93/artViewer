@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { deleteComment } from '../../actions/postActions';
+import { Link } from 'react-router-dom';
+
 
 class CommentItem extends Component {
   onDeleteClick(postId, commentId) {
@@ -10,7 +12,7 @@ class CommentItem extends Component {
 
   render() {
     const { comment, postId, auth } = this.props;
-    console.log(this.props);
+    // console.log(this.props);
 
     return (
       <div className="comment-container container">
@@ -28,13 +30,21 @@ class CommentItem extends Component {
           <div className="user-comment col-md-10">
             <p>{comment.text}</p>
             {comment.user === auth.user.id ? (
-              <button
-                onClick={this.onDeleteClick.bind(this, postId, comment._id)}
-                type="button"
-                className="btn btn-danger mr-1"
-              >
-                <i className="fas fa-times" />
-              </button>
+            <div>
+                <button
+                  onClick={this.onDeleteClick.bind(this, postId, comment._id)}
+                  type="button"
+                  className="btn btn-danger mr-1"
+                >
+                  <i className="fas fa-times" />
+                </button>
+                <Link 
+                  to={`/posts/comment/${postId}/${comment._id}`}
+                  type="button"
+                  className="btn btn-warning mr-1">
+                    Edit
+                </Link>
+            </div>
             ) : null}
           </div>
         </div>

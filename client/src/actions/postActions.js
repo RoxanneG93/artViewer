@@ -9,9 +9,14 @@ import {
   GET_POST,
   POST_LOADING,
   DELETE_POST,
+<<<<<<< HEAD
   EDIT_POST,
   GET_CURRENT_POST
 } from "./types";
+=======
+  EDIT_POST
+} from './types';
+>>>>>>> fc7ed499805394211adc2211f61ccdaf16690a54
 
 // Add Post
 export const addPost = postData => dispatch => {
@@ -107,6 +112,7 @@ export const deletePost = id => dispatch => {
     );
 };
 
+<<<<<<< HEAD
 // GET CURRENT POST
 export const getCurrentPost = id => dispatch => {
   axios
@@ -124,24 +130,73 @@ export const getCurrentPost = id => dispatch => {
       })
     );
 };
+=======
+
+// GET CURRENT POST 
+// export const getCurrentPost = id => dispatch => {
+//   axios
+//     .get(`/api/posts/${id}/edit`)
+//     .then(res =>
+//       dispatch({
+//         type: GET_CURRENT_POST,
+//         payload: res.data
+//       })
+//     )
+//     .catch(err =>
+//       dispatch({
+//         type: GET_ERRORS,
+//         payload: err.response.data
+//       })
+//     );
+// };
+>>>>>>> fc7ed499805394211adc2211f61ccdaf16690a54
 
 // EDIT Post
-export const editPost = id => dispatch => {
-  axios
-    .put(`/api/posts/${id}/edit`)
-    .then(res =>
-      dispatch({
-        type: EDIT_POST,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
+export const editPost = (data) => dispatch => {
+  console.log("below is the id log")
+    console.log(data);
+    // console.log("below is the data log")
+    // console.log(data);
+  axios.put(`/api/posts/${data._id}/edit`, data)
+        .then(res => {
+          dispatch({
+            type: EDIT_POST,
+            payload: data
+          })
+        })
+        .catch(err => 
+          dispatch({
+            type: GET_ERRORS,
+            payload: err.response.data
+        })
     );
 };
+
+
+// export function editPost(id, data){
+//     const request = axios.post(`/api/posts/${id}/edit`,data)
+//                 .then(response => response.data);
+
+//     return {
+//         type:'EDIT_POST',
+//         payload:request
+//     }
+
+// }
+
+
+// // Create Profile
+// export const createProfile = (profileData, history) => dispatch => {
+//   axios
+//     .post('/api/profile', profileData)
+//     .then(res => history.push('/dashboard'))
+//     .catch(err =>
+//       dispatch({
+//         type: GET_ERRORS,
+//         payload: err.response.data
+//       })
+//     );
+// };
 
 // Add Like
 export const addLike = id => dispatch => {
@@ -202,6 +257,41 @@ export const deleteComment = (postId, commentId) => dispatch => {
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
+      })
+    );
+};
+
+export const editComment = (postId, commentId, commentData) => dispatch => {
+  axios
+    .put(`/api/posts/comment/${postId}/${commentId}`, commentData)
+    .then(res =>
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+export const getComment = (postId, commentId) => dispatch => {
+  dispatch(setPostLoading());
+  axios
+    .get(`/api/posts/comment/${postId}/${commentId}`)
+    .then(res =>
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_POST,
+        payload: null
       })
     );
 };

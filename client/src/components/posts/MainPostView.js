@@ -3,17 +3,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
 import { Link } from "react-router-dom";
-import { addLike, removeLike } from "../../actions/postActions";
+// import { addLike, removeLike } from "../../actions/postActions";
 
 class MainPostView extends Component {
-
-  onLikeClick(id) {
-    this.props.addLike(id);
-  }
-
-  onUnlikeClick(id) {
-    this.props.removeLike(id);
-  }
 
   findUserLike(likes) {
     const { auth } = this.props;
@@ -44,7 +36,6 @@ class MainPostView extends Component {
           <p>username goes here</p>
           {showActions ? (
             <a
-              onClick={this.onLikeClick.bind(this, post._id)}
               className="likes"
             >
               <div
@@ -68,8 +59,6 @@ MainPostView.defaultProps = {
 };
 
 MainPostView.propTypes = {
-  addLike: PropTypes.func.isRequired,
-  removeLike: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -78,6 +67,6 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { addLike, removeLike })(
+export default connect(mapStateToProps, null)(
   MainPostView
 );
