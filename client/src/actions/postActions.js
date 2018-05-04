@@ -98,6 +98,7 @@ export const deletePost = id => dispatch => {
         payload: id
       })
     )
+    .then(res => window.location.reload())
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -142,38 +143,6 @@ export const editPost = (data) => dispatch => {
         })
     );
 };
-
-// export const editPost = data => dispatch => {
-//   console.log("below is the id log");
-//   console.log(data);
-//   // console.log("below is the data log")
-//   // console.log(data);
-//   axios
-//     .put(`/api/posts/${data._id}/edit`, data)
-//     .then(res => {
-//       dispatch({
-//         type: EDIT_POST,
-//         payload: data
-//       });
-//     })
-//     .catch(err =>
-//       dispatch({
-//         type: GET_ERRORS,
-//         payload: err.response.data
-//       })
-//     );
-// };
-
-// export function editPost(id, data){
-//     const request = axios.post(`/api/posts/${id}/edit`,data)
-//                 .then(response => response.data);
-
-//     return {
-//         type:'EDIT_POST',
-//         payload:request
-//     }
-
-// }
 
 // // Create Profile
 // export const createProfile = (profileData, history) => dispatch => {

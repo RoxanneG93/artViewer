@@ -6,7 +6,7 @@ import defaultImage from '../../img/profiledefault.png';
 
 class ProfileDetails extends Component {
   render() {
-    const { profile, user } = this.props;
+    const { profile, user} = this.props;
     console.log(this.props);
   
     // Get first name
@@ -14,9 +14,9 @@ class ProfileDetails extends Component {
 
     // Skill List
     const interests = profile.interests.map((interest, index) => (
-      <ul key={index} className="list-group list-group-flush">
+      <li key={index} className="">
         <i className="" /> {interest}
-      </ul>
+      </li>
     ));
 
     return (
@@ -99,7 +99,7 @@ class ProfileDetails extends Component {
               <h3 className="profile-interests">Interests</h3>
               <div className="row">
                 <div className="d-flex flex-wrap justify-content-center align-items-center">
-                  {interests}
+                  <ul>{interests}</ul>
                 </div>
               </div>
         </div>
@@ -108,7 +108,8 @@ class ProfileDetails extends Component {
 }
 
 ProfileDetails.propTypes = {
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
+  // posts: PropTypes.array.isRequired
 };
 
 export default ProfileDetails;

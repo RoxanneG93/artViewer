@@ -188,7 +188,7 @@ router.delete(
 //   passport.authenticate('jwt', { session: false }),
 //   (req, res) => {
 //     Profile.findOne({ username: req.params.username })
-//       .populate('user', ['username', 'posts'])
+//       .populate('user', ['username', 'posts'], populate: {"posts"}
 //       .then(profile => {
 //       Post.findById(req.params.id)
 //         .then(post => {
@@ -216,6 +216,7 @@ router.get('/username/:username', (req, res) => {
 
   Profile.findOne({ username: req.params.username })
     .populate('user', ['name', 'profilepic', 'posts', 'username'])
+    .populate('posts')
     .then(profile => {
       if (!profile) {
         errors.noprofile = 'There is no profile for this user';

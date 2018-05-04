@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import ProfileDetails from './ProfileDetails';
 import Spinner from '../common/Spinner';
 import { getProfileByUsername } from '../../actions/profileActions';
+import { getPosts } from '../../actions/postActions';
 // import UserPosts from '../posts/UserPosts';
 
 class Profile extends Component {
@@ -24,7 +25,8 @@ class Profile extends Component {
   }
 
   render() {
-    const { profile, loading } = this.props.profile;
+    const { profile, loading} = this.props.profile;
+    // const { posts} = this.props.post;
     let profileContent;
 
     if (profile === null || loading) {
@@ -62,7 +64,9 @@ class Profile extends Component {
 
 Profile.propTypes = {
   getProfileByUsername: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
+  // getPosts: PropTypes.func.isRequired,
+  // post: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({

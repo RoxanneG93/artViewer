@@ -22,10 +22,10 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Profile'
   },
-  posts: [{
+  posts: {
     type: Schema.Types.ObjectId,
     ref: 'Post'
-  }],
+  },
   date: {
     type: Date,
     default: Date.now
