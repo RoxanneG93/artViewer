@@ -24,6 +24,7 @@ router.get("/test", (req, res) => res.json({ msg: "Posts Works" }));
 // @access  Public
 router.get("/", (req, res) => {
   Post.find()
+    .populate("user", "profilepic")
     .then(posts => posts.sort((a, b) => b.likes.length - a.likes.length))
     .then(posts => res.json(posts))
     .catch(err => res.status(404).json({ nopostsfound: "No posts found" }));
@@ -40,16 +41,16 @@ router.get("/:id", (req, res) => {
     );
 });
 
-
 // @route   GET api/posts/user_id
 // @desc    Get ALL posts by user's id
 // @access  Public
 router.get(
-  '/:user_id',
-  passport.authenticate('jwt', { session: false }),
+  "/:user_id",
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Post.findOne({ user: req.user.id }).then(post => {
       Post.findById(req.params.id)
+        .populate("user", "profilepic")
         .then(post => {
           if (post.user.filter(post => post.user.toString() === req.user.id)) {
             return res.json("you have reached the user's posts");
@@ -60,9 +61,9 @@ router.get(
 
           // post.save().then(post => res.json(post));
         })
-        .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
+        .catch(err => res.status(404).json({ postnotfound: "No post found" }));
     });
-    console.log(req.params.id)
+    console.log(req.params.id);
   }
 );
 
@@ -112,7 +113,7 @@ router.post(
       title: req.body.title,
       image: req.body.image,
       name: req.body.name,
-      profilepic: req.body.profilepic,
+      profilepic: req.user.profilepic,
       user: req.user.id
     });
 
@@ -174,7 +175,6 @@ router.put(
         console.log("here");
         return res.status(401).json({ notauthorized: "User not authorized" });
       } else {
-
         // UPDATE
         Post.findOneAndUpdate(
           { _id: req.params.id },
@@ -342,7 +342,6 @@ router.put(
         });
 
         post.save().then(post => res.json(post));
-
       })
       .catch(err => res.status(404).json({ postnotfound: "No post found" }));
   }
@@ -352,18 +351,16 @@ router.put(
 // @desc    Get post by id
 // @access  Public
 router.get(
-  "/comment/:id/:comment_id", 
+  "/comment/:id/:comment_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-  Post.findById(req.params.id)
-    .then(post => res.json(post))
-    .catch(err =>
-      res.status(404).json({ nopostfound: "No post found with that ID" })
-    );
-});
-
-
-
+    Post.findById(req.params.id)
+      .then(post => res.json(post))
+      .catch(err =>
+        res.status(404).json({ nopostfound: "No post found with that ID" })
+      );
+  }
+);
 
 // @route   DELETE api/posts/comment/:id/:comment_id
 // @desc    Remove comment from post
