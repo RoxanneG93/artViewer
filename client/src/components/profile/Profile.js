@@ -39,12 +39,12 @@ class Profile extends Component {
             </div>
             <div className="about-container container-fluid">
               <div className="about-row row">
-                <div className="profile-details col-md-2">
+                <div className="profile-details col-md-4">
                  <ProfileDetails profile={profile} />
                 </div>
-                <div className="user-posts-container col-md-10">
+                <div className="user-posts-container col-md-8">
                   <h1>User's Posts would go here</h1>
-                  <Link to={`/user-posts`}>GALLERY</Link>
+                  <h1><em>Feature Comming Soon</em></h1>
                 </div>
               </div>
             </div>

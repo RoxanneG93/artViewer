@@ -17,7 +17,7 @@ class CommentItem extends Component {
     return (
       <div className="comment-container container">
         <div className="row">
-          <div className="user-link col-md-2">
+          <div className="user-link col-md-1">
             <a href="profile.html">
               <img
                 className="comment-image"
@@ -27,24 +27,16 @@ class CommentItem extends Component {
               <p>{comment.name}</p>
             </a>
           </div>
-          <div className="user-comment col-md-10">
+          <div className="user-comment col-md-11">
             <p>{comment.text}</p>
             {comment.user === auth.user.id ? (
-            <div>
                 <button
                   onClick={this.onDeleteClick.bind(this, postId, comment._id)}
                   type="button"
-                  className="btn btn-danger mr-1"
+                  className="delete-button btn btn-danger mr-1"
                 >
-                  <i className="fas fa-times" />
+                  Delete
                 </button>
-                <Link 
-                  to={`/posts/comment/${postId}/${comment._id}`}
-                  type="button"
-                  className="btn btn-warning mr-1">
-                    Edit
-                </Link>
-            </div>
             ) : null}
           </div>
         </div>

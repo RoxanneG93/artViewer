@@ -52,7 +52,7 @@ class CommentForm extends Component {
           <div className="comment-header card-header bg-info text-white">
             Make a comment...
           </div>
-          <div className="comment-card card-body">
+          <div className="comment-card">
             <form onSubmit={this.onSubmit}>
                 <TextAreaFieldGroup
                   placeholder="Reply to post"

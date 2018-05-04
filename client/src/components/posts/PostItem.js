@@ -29,6 +29,7 @@ class PostItem extends Component {
 
   render() {
     const { post, auth, showActions} = this.props;
+    console.log("this is PostItem.js log")
     console.log(this.props);
 
 

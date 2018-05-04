@@ -33,7 +33,6 @@ class MainPostView extends Component {
             alt="profile picture"
             className="latest-profiles-img"
           />
-          <p>username goes here</p>
           {showActions ? (
             <a
               className="likes"

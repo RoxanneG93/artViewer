@@ -26,14 +26,16 @@ class ProfileDetails extends Component {
               src={profile.user.profilepic}
               alt={defaultImage}
             />
-            <h1 className="display-4 text-center">{profile.user.name}</h1>
-            <p className="lead text-center">
+            <h1 className="display-4 text-center">
               {isEmpty(profile.username) ? null : (
-                <span>{profile.username}</span>
+                <span> {profile.username}</span>
               )}
-            </p>
+            </h1>
+            <p className="lead text-center">Name: <strong>{profile.user.name}</strong></p>
             <p>Occupation: <strong>{profile.occupation}</strong> </p>
             Location: {isEmpty(profile.location) ? null : <p>{profile.location}</p>}
+            <hr />
+            <h4>My Social Media Links:</h4>
             <p>
                 {isEmpty(profile.website) ? null : (
                   <a
@@ -47,7 +49,7 @@ class ProfileDetails extends Component {
 
                 {isEmpty(profile.social && profile.social.twitter) ? null : (
                   <a
-                    className="text-light p-2"
+                    className="text-info p-2"
                     href={profile.social.twitter}
                     target="_blank"
                   >

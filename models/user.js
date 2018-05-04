@@ -18,6 +18,14 @@ const UserSchema = new Schema({
   profilepic: {
     type: String
   },
+  username: {
+    type: Schema.Types.ObjectId,
+    ref: 'Profile'
+  },
+  posts: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Post'
+  }],
   date: {
     type: Date,
     default: Date.now

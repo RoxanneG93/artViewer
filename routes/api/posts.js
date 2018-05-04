@@ -7,6 +7,8 @@ const passport = require("passport");
 const Post = require("../../models/Post");
 // Profile model
 const Profile = require("../../models/Profile");
+// Load User Model
+const User = require('../../models/User');
 
 // Validation
 const validatePostInput = require("../../validation/post");
@@ -64,9 +66,9 @@ router.get(
   }
 );
 
-// @route   GET api/posts/user_id
-// @desc    Get ALL posts by user's id
-// @access  Public
+// // @route   GET api/profile/username/:username
+// // @desc    Get ALL posts by user's id
+// // @access  Public
 // router.get(
 //   '/:username',
 //   passport.authenticate('jwt', { session: false }),
@@ -90,9 +92,9 @@ router.get(
 //     console.log(req.params.id)
 //   }
 // );
-// @route   POST api/posts
-// @desc    Create post
-// @access  Private
+// // @route   POST api/posts
+// // @desc    Create post
+// // @access  Private
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
@@ -119,21 +121,36 @@ router.post(
   }
 );
 
-// @route   GET api/posts/:id/edit
-// @desc    Get post by id in for the dit form
+// ===== FAILED ATTAMPT AT GETTING USER's POSTS ========
+// @route   POST api/posts
+// @desc    Create post
 // @access  Private
-// router.get(
-//   '/:id/edit',
-//   passport.authenticate('jwt', { session: false }),
+// router.post(
+//   "/",
+//   passport.authenticate("jwt", { session: false }),
 //   (req, res) => {
-//     Post.findById(req.params.id)
-//       .then(post => res.json(post))
-//       .catch(err =>
-//         res.status(404).json({ nopostfound: "No post found with that ID" })
-//     );
+//     // console.log(user);
+//       const { errors, isValid } = validatePostInput(req.body);
+//       // Check Validation
+//       if (!isValid) {
+//         // If any errors, send 400 with errors object
+//         return res.status(400).json(errors);
+//       }
+
+//       const newPost = new Post({
+//         text: req.body.text,
+//         title: req.body.title,
+//         image: req.body.image,
+//         name: req.body.name,
+//         profilepic: req.body.profilepic,
+//         user: req.user.id
+//       });
+
+//       console.log(newPost)
+//       newPost.save().then(post => res.json(post));
+//       console.log(post);
 //   }
 // );
-
 
 // @route   EDIT api/posts/:id/edit
 // @desc    EDIT and UPDATE post
