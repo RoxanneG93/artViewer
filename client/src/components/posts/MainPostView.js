@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 // import { addLike, removeLike } from "../../actions/postActions";
 
 class MainPostView extends Component {
-
   findUserLike(likes) {
     const { auth } = this.props;
     if (likes.filter(like => like.user === auth.user.id).length > 0) {
@@ -21,8 +20,7 @@ class MainPostView extends Component {
     console.log(this.props);
 
     return (
-      
-      <Link to={`/posts/${post._id}`} className="post-container" >
+      <Link to={`/posts/${post._id}`} className="post-container">
         <img className="image" src={post.image} />
         <div className="overlay">
           {/* <div className="text-container"> */}
@@ -33,11 +31,9 @@ class MainPostView extends Component {
             alt="profile picture"
             className="latest-profiles-img"
           />
-          <p>username goes here</p>
+          {/* <p>username goes here</p> */}
           {showActions ? (
-            <a
-              className="likes"
-            >
+            <a className="likes">
               <div
                 className={classnames("far fa-heart fa-5x", {
                   "text-info": this.findUserLike(post.likes)
@@ -67,6 +63,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, null)(
-  MainPostView
-);
+export default connect(mapStateToProps, null)(MainPostView);
